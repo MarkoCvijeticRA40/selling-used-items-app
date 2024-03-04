@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\selling-used-items-app-backend.props" />
+</Project>
