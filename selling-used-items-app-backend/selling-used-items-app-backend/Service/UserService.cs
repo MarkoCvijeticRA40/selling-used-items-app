@@ -1,16 +1,13 @@
-﻿using selling_used_items_app_backend.IRepository;
-using selling_used_items_app_backend.Model;
+﻿using selling_used_items_app_backend.Model;
+using selling_used_items_app_backend.Repository;
 
 namespace selling_used_items_app_backend.Service
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService()
-        {
-
-        }
+        public UserService() { }
 
         public UserService(IUserRepository userRepository)
         {
@@ -22,9 +19,9 @@ namespace selling_used_items_app_backend.Service
             return _userRepository.GetAll();
         }
 
-        public User GetById(int id)
+        public User Get(int id)
         {
-            return _userRepository.GetById(id);
+            return _userRepository.Get(id);
         }
 
         public void Create(User user)

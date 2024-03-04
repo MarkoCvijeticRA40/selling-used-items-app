@@ -8,9 +8,9 @@ namespace selling_used_items_app_backend.Controllers
     [Route("api/advertisements")]
     public class AdvertisementController : ControllerBase
     {
-        private readonly AdvertisementService _advertisementService;
+        private readonly IAdvertisementService _advertisementService;
 
-        public AdvertisementController(AdvertisementService advertisementService)
+        public AdvertisementController(IAdvertisementService advertisementService)
         {
             _advertisementService = advertisementService ?? throw new ArgumentNullException(nameof(advertisementService));
         }
@@ -23,9 +23,9 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Advertisement> GetById(int id)
+        public ActionResult<Advertisement> Get(int id)
         {
-            var advertisement = _advertisementService.GetById(id);
+            var advertisement = _advertisementService.Get(id);
             if (advertisement == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace selling_used_items_app_backend.Controllers
         public IActionResult Create(Advertisement advertisement)
         {
             _advertisementService.Create(advertisement);
-            return CreatedAtAction(nameof(GetById), new { id = advertisement.id }, advertisement);
+            return CreatedAtAction(nameof(Get), new { id = advertisement.id }, advertisement);
         }
 
         [HttpPut("{id}")]
@@ -57,6 +57,13 @@ namespace selling_used_items_app_backend.Controllers
         {
             _advertisementService.Delete(id);
             return NoContent();
+        }
+
+        [HttpPost("search")]
+        public ActionResult<IEnumerable<Advertisement>> Search(string name = null, char? firstLetter = null, decimal? startPrice = null, decimal? endPrice = null)
+        {
+            var advertisements = _advertisementService.Search(name, firstLetter, startPrice, endPrice);
+            return Ok(advertisements);
         }
     }
 }

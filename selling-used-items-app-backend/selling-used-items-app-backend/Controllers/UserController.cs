@@ -8,9 +8,9 @@ namespace selling_used_items_app_backend.Controllers
     [Route("api/users")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UserController(UserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
@@ -23,9 +23,9 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<User> GetUserById(int id)
+        public ActionResult<User> Get(int id)
         {
-            var user = _userService.GetById(id);
+            var user = _userService.Get(id);
             if (user == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace selling_used_items_app_backend.Controllers
         public IActionResult CreateUser(User user)
         {
             _userService.Create(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = user.id }, user);
+            return CreatedAtAction(nameof(Get), new { id = user.id }, user);
         }
 
         [HttpPut("{id}")]

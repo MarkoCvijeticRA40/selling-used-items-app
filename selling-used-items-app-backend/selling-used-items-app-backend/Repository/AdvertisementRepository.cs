@@ -1,5 +1,4 @@
-﻿using selling_used_items_app_backend.Data;
-using selling_used_items_app_backend.IRepository;
+﻿using selling_used_items_app_backend;
 using selling_used_items_app_backend.Model;
 
 namespace selling_used_items_app_backend.Repository
@@ -18,7 +17,7 @@ namespace selling_used_items_app_backend.Repository
             return _context.Advertisements.ToList();
         }
 
-        public Advertisement GetById(int id)
+        public Advertisement Get(int id)
         {
             return _context.Advertisements.Find(id);
         }

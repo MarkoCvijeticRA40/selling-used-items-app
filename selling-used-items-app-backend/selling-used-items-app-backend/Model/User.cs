@@ -9,24 +9,27 @@ namespace selling_used_items_app_backend.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Name is required")]
         public string name { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Lastname is required")]
         public string lastName { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Username is required")]
         public string username { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Password is required")]
         public string password { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string email { get; set; }
+        
+        [Required(ErrorMessage = "Role is required")]
+        public UserRole userRole { get; set; }
 
-        [Required]
-        public UserRole role { get; set; }
+        [Required(ErrorMessage = "Blocked status is required")]
+        public bool isBlocked { get; set; } = false;
     }
 }
