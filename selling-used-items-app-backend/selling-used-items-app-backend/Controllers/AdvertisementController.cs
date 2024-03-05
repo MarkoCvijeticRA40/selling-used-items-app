@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
+using selling_used_items_app_backend.Validator.AdvertisementValidator;
+using System.ComponentModel.DataAnnotations;
 
 namespace selling_used_items_app_backend.Controllers
 {
@@ -9,10 +11,16 @@ namespace selling_used_items_app_backend.Controllers
     public class AdvertisementController : ControllerBase
     {
         private readonly IAdvertisementService _advertisementService;
+        private readonly AdvertisementCreateValidator _advertisementCreateValidator;
+        private readonly AdvertisementUpdateValidator _advertisementUpdateValidator;
+        private readonly AdvertisementDeleteValidator _advertisementDeleteValidator;
 
-        public AdvertisementController(IAdvertisementService advertisementService)
+        public AdvertisementController(IAdvertisementService advertisementService, AdvertisementCreateValidator advertisementCreateValidator, AdvertisementUpdateValidator advertisementUpdateValidator, AdvertisementDeleteValidator advertisementDeleteValidator)
         {
-            _advertisementService = advertisementService ?? throw new ArgumentNullException(nameof(advertisementService));
+            _advertisementService = advertisementService;
+            _advertisementCreateValidator = advertisementCreateValidator;
+            _advertisementUpdateValidator = advertisementUpdateValidator;
+            _advertisementDeleteValidator = advertisementDeleteValidator;
         }
 
         [HttpGet]
@@ -36,6 +44,11 @@ namespace selling_used_items_app_backend.Controllers
         [HttpPost]
         public IActionResult Create(Advertisement advertisement)
         {
+            var validationResult = _advertisementCreateValidator.ValidateAdvertisement(advertisement);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
             _advertisementService.Create(advertisement);
             return CreatedAtAction(nameof(Get), new { id = advertisement.id }, advertisement);
         }
@@ -45,9 +58,13 @@ namespace selling_used_items_app_backend.Controllers
         {
             if (id != advertisement.id)
             {
-                return BadRequest();
+                return BadRequest("ID in the request path does not match the ID in the request body.");
             }
-
+            var validationResult = _advertisementCreateValidator.ValidateAdvertisement(advertisement);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
             _advertisementService.Update(advertisement);
             return NoContent();
         }
@@ -55,11 +72,16 @@ namespace selling_used_items_app_backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var validationResult = _advertisementDeleteValidator.ValidateAdvertisement(id);
+            if (validationResult != ValidationResult.Success)
+            {
+                return NotFound(validationResult.ErrorMessage);
+            }
             _advertisementService.Delete(id);
             return NoContent();
         }
 
-        [HttpPost("search")]
+        [HttpGet("search")]
         public ActionResult<IEnumerable<Advertisement>> Search(string name = null, char? firstLetter = null, decimal? startPrice = null, decimal? endPrice = null)
         {
             var advertisements = _advertisementService.Search(name, firstLetter, startPrice, endPrice);

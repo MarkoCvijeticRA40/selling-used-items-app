@@ -9,7 +9,7 @@ namespace selling_used_items_app_backend.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
-        [Required(ErrorMessage = "Content is required")]
+        [Required]
         public string content { get; set; }
 
         [ForeignKey("Advertisement")]
@@ -18,7 +18,7 @@ namespace selling_used_items_app_backend.Model
         [ForeignKey("User")]
         public int userId { get; set; }
 
-        [Required(ErrorMessage = "Rating is required")]
+        [Required]
         public double rating { get; set; }
     }
 }

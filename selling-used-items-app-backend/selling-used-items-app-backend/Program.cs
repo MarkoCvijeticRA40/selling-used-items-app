@@ -3,6 +3,10 @@ using selling_used_items_app_backend.Service;
 using Microsoft.EntityFrameworkCore;
 using selling_used_items_app_backend.Repository;
 using selling_used_items_app_backend.Controllers;
+using selling_used_items_app_backend.Validator.AdvertisementValidator;
+using selling_used_items_app_backend.Validator.CommentValidator;
+using selling_used_items_app_backend.Validator.PurchaseValidator;
+using selling_used_items_app_backend.Validator.UserValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,18 +19,31 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//Services
 builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+//Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+//Controllers
 builder.Services.AddScoped<AdvertisementController>();
 builder.Services.AddScoped<UserController>();
 builder.Services.AddScoped<CommentController>();
 builder.Services.AddScoped<PurchaseController>();
+//Validators
+builder.Services.AddScoped<AdvertisementCreateValidator>();
+builder.Services.AddScoped<AdvertisementDeleteValidator>();
+builder.Services.AddScoped<AdvertisementUpdateValidator>();
+builder.Services.AddScoped<CommentCreateValidator>();
+builder.Services.AddScoped<CommentDeleteValidator>();
+builder.Services.AddScoped<PurchaseCreateValidator>();
+builder.Services.AddScoped<UserCreateValidator>();
+builder.Services.AddScoped<UserDeleteValidator>();
+builder.Services.AddScoped<UserUpdateValidator>();
 
 var app = builder.Build();
 

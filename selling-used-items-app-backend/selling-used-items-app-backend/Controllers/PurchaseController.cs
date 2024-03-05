@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
+using selling_used_items_app_backend.Validator.PurchaseValidator;
+using System.ComponentModel.DataAnnotations;
 
 namespace selling_used_items_app_backend.Controllers
 {
@@ -9,10 +11,12 @@ namespace selling_used_items_app_backend.Controllers
     public class PurchaseController : ControllerBase
     {
         private readonly IPurchaseService _purchaseService;
+        private readonly PurchaseCreateValidator _purchaseCreateValidator;
 
-        public PurchaseController(IPurchaseService purchaseService)
+        public PurchaseController(IPurchaseService purchaseService, PurchaseCreateValidator purchaseCreateValidator)
         {
             _purchaseService = purchaseService ?? throw new ArgumentNullException(nameof(purchaseService));
+            _purchaseCreateValidator = purchaseCreateValidator;
         }
 
         [HttpGet]
@@ -36,27 +40,13 @@ namespace selling_used_items_app_backend.Controllers
         [HttpPost]
         public IActionResult CreatePurchase(Purchase purchase)
         {
+            var validationResult = _purchaseCreateValidator.ValidatePurchase(purchase);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
             _purchaseService.Create(purchase);
             return CreatedAtAction(nameof(GetPurchase), new { id = purchase.id }, purchase);
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult UpdatePurchase(int id, Purchase purchase)
-        {
-            if (id != purchase.id)
-            {
-                return BadRequest();
-            }
-
-            _purchaseService.Update(purchase);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeletePurchase(int id)
-        {
-            _purchaseService.Delete(id);
-            return NoContent();
         }
     }
 }
