@@ -1,5 +1,4 @@
-﻿using selling_used_items_app_backend.Data;
-using selling_used_items_app_backend.IRepository;
+﻿using selling_used_items_app_backend;
 using selling_used_items_app_backend.Model;
 
 namespace selling_used_items_app_backend.Repository
@@ -18,7 +17,7 @@ namespace selling_used_items_app_backend.Repository
             return _context.Users.ToList();
         }
 
-        public User GetById(int id)
+        public User Get(int id)
         {
             return _context.Users.Find(id);
         }
@@ -43,6 +42,11 @@ namespace selling_used_items_app_backend.Repository
                 _context.Users.Remove(user);
                 _context.SaveChanges();
             }
+        }
+
+        public User GetByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.email == email);
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using selling_used_items_app_backend.Data;
+using selling_used_items_app_backend;
 
 #nullable disable
 
@@ -29,13 +29,78 @@ namespace sellinguseditemsappbackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<int>("advertisementStatus")
+                        .HasColumnType("integer");
+
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("price")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("integer");
+
                     b.HasKey("id");
 
                     b.ToTable("Advertisements");
+                });
+
+            modelBuilder.Entity("selling_used_items_app_backend.Model.Comment", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("advertisementId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("rating")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("userId", "advertisementId")
+                        .IsUnique();
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("selling_used_items_app_backend.Model.Purchase", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("advertisementId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Purchases");
                 });
 
             modelBuilder.Entity("selling_used_items_app_backend.Model.User", b =>
@@ -50,6 +115,9 @@ namespace sellinguseditemsappbackend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("isBlocked")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -62,7 +130,7 @@ namespace sellinguseditemsappbackend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("role")
+                    b.Property<int>("userRole")
                         .HasColumnType("integer");
 
                     b.Property<string>("username")
@@ -70,6 +138,12 @@ namespace sellinguseditemsappbackend.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("id");
+
+                    b.HasIndex("email")
+                        .IsUnique();
+
+                    b.HasIndex("username")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

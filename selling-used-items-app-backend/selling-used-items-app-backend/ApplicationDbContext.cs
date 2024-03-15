@@ -1,0 +1,34 @@
+﻿using Microsoft.EntityFrameworkCore;
+using selling_used_items_app_backend.Model;
+
+namespace selling_used_items_app_backend
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+
+        public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+            .HasIndex(u => u.username)
+            .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.email)
+                .IsUnique();
+
+            modelBuilder.Entity<Comment>()
+                .HasIndex(c => new { c.userId, c.advertisementId })
+                .IsUnique();
+        }
+    }
+}

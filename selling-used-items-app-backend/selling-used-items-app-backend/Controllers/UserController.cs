@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
+using selling_used_items_app_backend.Validator.UserValidator;
+using System.ComponentModel.DataAnnotations;
 
 namespace selling_used_items_app_backend.Controllers
 {
@@ -8,24 +11,33 @@ namespace selling_used_items_app_backend.Controllers
     [Route("api/users")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
+        private readonly UserCreateValidator _createUserValidator;
+        private readonly UserUpdateValidator _updateUserValidator;
+        private readonly UserDeleteValidator _deleteUserValidator;
+        private readonly IJWTService _jwtService;
+        private const string SecretKey = "MySecretKey";
 
-        public UserController(UserService userService)
+        public UserController(IJWTService jwtService, IUserService userService, UserCreateValidator createUserValidator, UserUpdateValidator updateUserValidator, UserDeleteValidator deleteUserValidator)
         {
-            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _userService = userService;
+            _createUserValidator = createUserValidator;
+            _updateUserValidator = updateUserValidator;
+            _deleteUserValidator = deleteUserValidator;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAllUsers()
+        public ActionResult<IEnumerable<User>> GetAll()
         {
             var users = _userService.GetAll();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<User> GetUserById(int id)
+        public ActionResult<User> Get(int id)
         {
-            var user = _userService.GetById(id);
+            var user = _userService.Get(id);
             if (user == null)
             {
                 return NotFound();
@@ -36,8 +48,13 @@ namespace selling_used_items_app_backend.Controllers
         [HttpPost]
         public IActionResult CreateUser(User user)
         {
+            var validationResult = _createUserValidator.ValidateUser(user);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
             _userService.Create(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = user.id }, user);
+            return CreatedAtAction(nameof(Get), new { id = user.id }, user);
         }
 
         [HttpPut("{id}")]
@@ -45,9 +62,13 @@ namespace selling_used_items_app_backend.Controllers
         {
             if (id != user.id)
             {
-                return BadRequest();
+                return BadRequest("ID in the request path does not match the ID in the request body.");
             }
-
+            var validationResult = _updateUserValidator.ValidateUser(user);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
             _userService.Update(user);
             return NoContent();
         }
@@ -55,8 +76,40 @@ namespace selling_used_items_app_backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
+            var validationResult = _deleteUserValidator.ValidateUser(id);
+            if (validationResult != ValidationResult.Success)
+            {
+                return NotFound(validationResult.ErrorMessage);
+            }
             _userService.Delete(id);
             return NoContent();
+        }
+
+        [HttpPost("generate-token")]
+        public IActionResult GenerateToken(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Email and password are required.");
+            }
+            string token = _jwtService.GenerateToken(email, password);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(string email, string password)
+        {
+            var user = _userService.GetByEmail(email);
+            if (user == null)
+            {
+                return Unauthorized("Unauthorized!");
+            }
+            if (user.password != password)
+            {
+                return Unauthorized("Unauthorized!");
+            }
+            var token = _jwtService.GenerateToken(email, password);
+            return Ok(new { Token = token });
         }
     }
 }

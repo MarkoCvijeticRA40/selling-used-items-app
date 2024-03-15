@@ -9,24 +9,27 @@ namespace selling_used_items_app_backend.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        
+
         [Required]
         public string name { get; set; }
-        
+
         [Required]
         public string lastName { get; set; }
-        
+
         [Required]
         public string username { get; set; }
-        
+
         [Required]
         public string password { get; set; }
-        
+
         [Required]
         [EmailAddress]
         public string email { get; set; }
+        
+        [Required]
+        public UserRole userRole { get; set; }
 
         [Required]
-        public UserRole role { get; set; }
+        public bool isBlocked { get; set; } = false;
     }
 }
