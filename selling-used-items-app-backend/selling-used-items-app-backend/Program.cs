@@ -7,6 +7,9 @@ using selling_used_items_app_backend.Validator.AdvertisementValidator;
 using selling_used_items_app_backend.Validator.CommentValidator;
 using selling_used_items_app_backend.Validator.PurchaseValidator;
 using selling_used_items_app_backend.Validator.UserValidator;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,7 @@ builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+builder.Services.AddScoped<IJWTService, JWTService>();
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
@@ -44,6 +48,23 @@ builder.Services.AddScoped<PurchaseCreateValidator>();
 builder.Services.AddScoped<UserCreateValidator>();
 builder.Services.AddScoped<UserDeleteValidator>();
 builder.Services.AddScoped<UserUpdateValidator>();
+//Auth
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "YourIssuer",
+            ValidAudience = "YourAudience",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourSecretKey"))
+        };
+    });
+//Authorization
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -52,6 +73,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseAuthentication();
 }
 
 app.UseHttpsRedirection();

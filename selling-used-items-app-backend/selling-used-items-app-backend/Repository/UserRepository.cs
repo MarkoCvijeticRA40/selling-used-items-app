@@ -43,5 +43,10 @@ namespace selling_used_items_app_backend.Repository
                 _context.SaveChanges();
             }
         }
+
+        public User GetByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.email == email);
+        }
     }
 }

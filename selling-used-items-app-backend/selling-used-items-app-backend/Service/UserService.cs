@@ -44,5 +44,10 @@ namespace selling_used_items_app_backend.Service
         {
             _userRepository.Delete(id);
         }
+
+        public User GetByEmail(string email)
+        {
+            return _userRepository.GetByEmail(email);
+        }
     }
 }

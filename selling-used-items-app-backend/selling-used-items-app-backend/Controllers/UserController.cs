@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
 using selling_used_items_app_backend.Validator.UserValidator;
@@ -14,18 +15,20 @@ namespace selling_used_items_app_backend.Controllers
         private readonly UserCreateValidator _createUserValidator;
         private readonly UserUpdateValidator _updateUserValidator;
         private readonly UserDeleteValidator _deleteUserValidator;
+        private readonly IJWTService _jwtService;
+        private const string SecretKey = "MySecretKey";
 
-
-        public UserController(IUserService userService, UserCreateValidator createUserValidator, UserUpdateValidator updateUserValidator, UserDeleteValidator deleteUserValidator)
+        public UserController(IJWTService jwtService, IUserService userService, UserCreateValidator createUserValidator, UserUpdateValidator updateUserValidator, UserDeleteValidator deleteUserValidator)
         {
             _userService = userService;
             _createUserValidator = createUserValidator;
             _updateUserValidator = updateUserValidator;
             _deleteUserValidator = deleteUserValidator;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAllUsers()
+        public ActionResult<IEnumerable<User>> GetAll()
         {
             var users = _userService.GetAll();
             return Ok(users);
@@ -82,5 +85,31 @@ namespace selling_used_items_app_backend.Controllers
             return NoContent();
         }
 
+        [HttpPost("generate-token")]
+        public IActionResult GenerateToken(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Email and password are required.");
+            }
+            string token = _jwtService.GenerateToken(email, password);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(string email, string password)
+        {
+            var user = _userService.GetByEmail(email);
+            if (user == null)
+            {
+                return Unauthorized("Unauthorized!");
+            }
+            if (user.password != password)
+            {
+                return Unauthorized("Unauthorized!");
+            }
+            var token = _jwtService.GenerateToken(email, password);
+            return Ok(new { Token = token });
+        }
     }
 }

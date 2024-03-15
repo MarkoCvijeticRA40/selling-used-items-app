@@ -9,5 +9,6 @@ namespace selling_used_items_app_backend.Repository
         void Create(User user);
         void Update(User user);
         void Delete(int id);
+        User GetByEmail(string email);
     }
 }
