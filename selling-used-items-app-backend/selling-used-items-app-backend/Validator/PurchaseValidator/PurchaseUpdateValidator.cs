@@ -1,28 +1,27 @@
-﻿using selling_used_items_app_backend.Enum;
 using selling_used_items_app_backend.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace selling_used_items_app_backend.Validator.PurchaseValidator
 {
-    public class PurchaseCreateValidator
+    public class PurchaseUpdateValidator
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public PurchaseCreateValidator(ApplicationDbContext dbContext)
+        public PurchaseUpdateValidator(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public ValidationResult ValidatePurchase(Purchase purchase)
+        public ValidationResult ValidatePurchaseUpdate(Purchase purchase)
         {
             if (purchase == null)
             {
                 return new ValidationResult("Purchase object is null.");
             }
 
-            if (purchase.id != 0)
+            if (_dbContext.Purchases.FirstOrDefault(p => p.id == purchase.id) == null)
             {
-                return new ValidationResult("ID should not be set for new purchases.");
+                return new ValidationResult("Invalid purchase ID. Purchase does not exist.");
             }
 
             if (_dbContext.Users.FirstOrDefault(u => u.id == purchase.userId) == null)
@@ -35,9 +34,9 @@ namespace selling_used_items_app_backend.Validator.PurchaseValidator
                 return new ValidationResult("Invalid advertisementId. Advertisement does not exist.");
             }
 
-            if (purchase.purchaseStatus != 0)
+            if ((int)purchase.purchaseStatus < 0 || (int)purchase.purchaseStatus > 2)
             {
-                return new ValidationResult("Purchase status must be 0 for creating.");
+                return new ValidationResult("Purchase status must be between 0 and 2.");
             }
 
             return ValidationResult.Success;

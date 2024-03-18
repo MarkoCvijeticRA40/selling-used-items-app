@@ -49,16 +49,6 @@ namespace selling_used_items_app_backend.Validator.UserValidator
                 return new ValidationResult("Email is required.");
             }
 
-            if (!string.IsNullOrWhiteSpace(user.email) && !_dbContext.Users.Any(u => u.email == user.email && u.id != user.id))
-            {
-                return new ValidationResult("Email already exists.");
-            }
-
-            if (user.isBlocked)
-            {
-                return new ValidationResult("Blocked status cannot be set during user creation.");
-            }
-
             return ValidationResult.Success;
         }
     }

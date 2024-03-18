@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using selling_used_items_app_backend.Enum;
 
 namespace selling_used_items_app_backend.Model
 {
@@ -26,8 +25,5 @@ namespace selling_used_items_app_backend.Model
 
     [ForeignKey("User")]
     public int userId { get; set; }
-
-    [Required]
-    public AdvertisementStatus advertisementStatus { get; set; } = AdvertisementStatus.Available;
     }
 }

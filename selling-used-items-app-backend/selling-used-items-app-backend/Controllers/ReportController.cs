@@ -1,0 +1,42 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using selling_used_items_app_backend.Model;
+using selling_used_items_app_backend.Service;
+using selling_used_items_app_backend.Validator.ReportValidator;
+
+namespace selling_used_items_app_backend.Controllers
+{
+    [ApiController]
+    [Route("api/reports")]
+    public class ReportController : ControllerBase
+    {
+        private readonly IReportService _reportService;
+        private readonly ReportCreateValidator _reportCreateValidator;
+
+        public ReportController(IReportService reportService, ReportCreateValidator reportCreateValidator)
+        {
+            _reportService = reportService ?? throw new ArgumentNullException(nameof(reportService));
+            _reportCreateValidator = reportCreateValidator ?? throw new ArgumentNullException(nameof(reportCreateValidator));
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Report>> GetAll()
+        {
+            var reports = _reportService.GetAll();
+            return Ok(reports);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Report report)
+        {
+            var validationResult = _reportCreateValidator.ValidateReport(report);
+            if (validationResult != ValidationResult.Success)
+            {
+                return BadRequest(validationResult.ErrorMessage);
+            }
+
+            _reportService.Create(report);
+            return Ok("Report created successfully.");
+        }
+    }
+}

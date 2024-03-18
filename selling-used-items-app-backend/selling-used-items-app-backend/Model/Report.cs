@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using selling_used_items_app_backend.Enum;
 
 namespace selling_used_items_app_backend.Model
 {
-    public class Purchase
+    public class Report
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,8 +12,6 @@ namespace selling_used_items_app_backend.Model
         [ForeignKey("User")]
         public int userId { get; set; }
 
-        [ForeignKey("Advertisement")]
-        public int advertisementId { get; set; }
-        public PurchaseStatus purchaseStatus { get; set; }
+        public String reason { get; set; }
     }
 }

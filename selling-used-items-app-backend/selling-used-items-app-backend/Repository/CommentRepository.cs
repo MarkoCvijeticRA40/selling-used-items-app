@@ -42,5 +42,10 @@ namespace selling_used_items_app_backend.Repository
                 _context.SaveChanges();
             }
         }
+
+        public IEnumerable<Comment> GetAllByTargetUserId(int targetUserId)
+        {
+            return _context.Comments.Where(c => c.targetUserId == targetUserId).ToList();
+        }
     }
 }

@@ -10,6 +10,7 @@ using selling_used_items_app_backend.Validator.UserValidator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using selling_used_items_app_backend.Validator.ReportValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,6 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -28,16 +28,20 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddScoped<IJWTService, JWTService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
 //Controllers
 builder.Services.AddScoped<AdvertisementController>();
 builder.Services.AddScoped<UserController>();
 builder.Services.AddScoped<CommentController>();
 builder.Services.AddScoped<PurchaseController>();
+builder.Services.AddScoped<ReportRepository>();
 //Validators
 builder.Services.AddScoped<AdvertisementCreateValidator>();
 builder.Services.AddScoped<AdvertisementDeleteValidator>();
@@ -48,6 +52,7 @@ builder.Services.AddScoped<PurchaseCreateValidator>();
 builder.Services.AddScoped<UserCreateValidator>();
 builder.Services.AddScoped<UserDeleteValidator>();
 builder.Services.AddScoped<UserUpdateValidator>();
+builder.Services.AddScoped<ReportCreateValidator>();
 //Auth
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

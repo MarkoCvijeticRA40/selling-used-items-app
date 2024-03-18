@@ -49,8 +49,6 @@ namespace selling_used_items_app_backend.Validator.AdvertisementValidator
                 return new ValidationResult("Invalid userId. User does not exist.");
             }
 
-            //Dodati za status
-
             return ValidationResult.Success;
         }
     }

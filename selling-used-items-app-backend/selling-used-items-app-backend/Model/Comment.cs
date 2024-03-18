@@ -9,16 +9,17 @@ namespace selling_used_items_app_backend.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
-        [Required]
-        public string content { get; set; }
+        [ForeignKey("User")]
+        public int creatorId { get; set; }
+
+        [ForeignKey("User")]
+        public int targetUserId { get; set; }
 
         [ForeignKey("Advertisement")]
         public int advertisementId { get; set; }
 
-        [ForeignKey("User")]
-        public int userId { get; set; }
+        public string message { get; set; } 
 
-        [Required]
-        public double rating { get; set; }
+        public int rating { get; set; }
     }
 }
