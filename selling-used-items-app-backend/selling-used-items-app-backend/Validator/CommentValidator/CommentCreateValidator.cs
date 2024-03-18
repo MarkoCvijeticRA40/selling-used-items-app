@@ -1,5 +1,6 @@
 ﻿using selling_used_items_app_backend.Model;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace selling_used_items_app_backend.Validator.CommentValidator
 {
@@ -24,24 +25,39 @@ namespace selling_used_items_app_backend.Validator.CommentValidator
                 return new ValidationResult("ID should not be set for new comments.");
             }
 
-            if (string.IsNullOrWhiteSpace(comment.content))
+            if (string.IsNullOrWhiteSpace(comment.message))
             {
-                return new ValidationResult("Content is required.");
+                return new ValidationResult("Message is required.");
             }
 
-            if (comment.advertisementId <= 0 || _dbContext.Advertisements.FirstOrDefault(a => a.id == comment.advertisementId) == null)
+            if (_dbContext.Advertisements.FirstOrDefault(a => a.id == comment.advertisementId) == null)
             {
-                return new ValidationResult("Invalid advertisementId. Advertisement does not exist.");
+                return new ValidationResult("Invalid AdvertisementId. Advertisement does not exist.");
             }
 
-            if (comment.userId <= 0 || _dbContext.Users.FirstOrDefault(u => u.id == comment.userId) == null)
+            if (_dbContext.Users.FirstOrDefault(u => u.id == comment.creatorId) == null)
             {
-                return new ValidationResult("Invalid userId. User does not exist.");
+                return new ValidationResult("Invalid CreatorId. Creator does not exist.");
             }
 
-            if (comment.rating < 0 || comment.rating > 5)
+            if (_dbContext.Users.FirstOrDefault(u => u.id == comment.targetUserId) == null)
             {
-                return new ValidationResult("Rating must be between 0 and 5.");
+                return new ValidationResult("Invalid TargetUserId. Target user does not exist.");
+            }
+
+            if (comment.rating < 1 || comment.rating > 5)
+            {
+                return new ValidationResult("Rating must be between 1 and 5.");
+            }
+
+            if (_dbContext.Comments.Any(c => c.advertisementId == comment.advertisementId && c.creatorId == comment.creatorId))
+            {
+                return new ValidationResult("Comment with the same AdvertisementId and CreatorId already exists.");
+            }
+
+            if (!_dbContext.Purchases.Any(p => p.userId == comment.creatorId && p.advertisementId == comment.advertisementId))
+            {
+                return new ValidationResult("Can not comment because you do not have purchase with these user!");
             }
 
             return ValidationResult.Success;

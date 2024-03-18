@@ -44,5 +44,10 @@ namespace selling_used_items_app_backend.Service
         {
             _commentRepository.Delete(id);
         }
+
+        public IEnumerable<Comment> GetAllByTargetUserId(int targetUserId)
+        {
+            return _commentRepository.GetAllByTargetUserId(targetUserId);
+        }
     }
 }

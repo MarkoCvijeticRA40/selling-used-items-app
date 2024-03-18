@@ -9,5 +9,6 @@ namespace selling_used_items_app_backend.Repository
         void Create(Comment comment);
         void Update(Comment comment);
         void Delete(int id);
+        IEnumerable<Comment> GetAllByTargetUserId(int targetUserId);
     }
 }

@@ -62,5 +62,12 @@ namespace selling_used_items_app_backend.Controllers
             _commentService.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("target-user/{targetUserId}")]
+        public ActionResult<IEnumerable<Comment>> GetCommentsByTargetUserId(int targetUserId)
+        {
+            var comments = _commentService.GetAllByTargetUserId(targetUserId);
+            return Ok(comments);
+        }
     }
 }

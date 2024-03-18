@@ -48,5 +48,20 @@ namespace selling_used_items_app_backend.Controllers
             _purchaseService.Create(purchase);
             return CreatedAtAction(nameof(GetPurchase), new { id = purchase.id }, purchase);
         }
+
+        [HttpPatch("{id}/{newStatus}")]
+        public IActionResult UpdatePurchaseStatus(int id, int newStatus)
+        {
+            var purchase = _purchaseService.Get(id);
+            if (purchase == null)
+            {
+                return NotFound();
+            }
+
+            purchase.purchaseStatus = (Enum.PurchaseStatus)newStatus;
+            _purchaseService.Update(purchase);
+
+            return Ok($"Purchase with ID {id} status has been updated to {newStatus}.");
+        }
     }
 }
