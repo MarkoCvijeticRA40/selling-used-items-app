@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using selling_used_items_app_backend;
@@ -11,9 +12,11 @@ using selling_used_items_app_backend;
 namespace sellinguseditemsappbackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318133619_FifteenMigration")]
+    partial class FifteenMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,9 +69,6 @@ namespace sellinguseditemsappbackend.Migrations
 
                     b.Property<int>("creatorId")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("isApproved")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("message")
                         .IsRequired()

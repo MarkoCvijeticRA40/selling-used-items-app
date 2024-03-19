@@ -100,3 +100,8 @@ C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-ba
 C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\obj\Debug\net7.0\selling-used-items-app-backend.pdb
 C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\obj\Debug\net7.0\selling-used-items-app-backend.genruntimeconfig.cache
 C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\obj\Debug\net7.0\ref\selling-used-items-app-backend.dll
+C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\bin\Debug\net7.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\bin\Debug\net7.0\Scrutor.dll
+C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\marko.cvijetic\Desktop\selling-used-items-app\selling-used-items-app-backend\selling-used-items-app-backend\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

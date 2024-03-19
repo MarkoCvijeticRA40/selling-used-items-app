@@ -21,5 +21,7 @@ namespace selling_used_items_app_backend.Model
         public string message { get; set; } 
 
         public int rating { get; set; }
+        
+        public Boolean isApproved { get; set;}
     }
 }

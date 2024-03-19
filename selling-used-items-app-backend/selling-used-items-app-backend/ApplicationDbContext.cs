@@ -15,6 +15,7 @@ namespace selling_used_items_app_backend
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<Report> Reports { get; set;}
+        public DbSet<Message> Messages { get; set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

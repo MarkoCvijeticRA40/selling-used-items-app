@@ -69,5 +69,24 @@ namespace selling_used_items_app_backend.Controllers
             var comments = _commentService.GetAllByTargetUserId(targetUserId);
             return Ok(comments);
         }
+
+        [HttpPatch("{id}/approve")]
+        public IActionResult ApproveComment(int id)
+        {
+            var comment = _commentService.Get(id);
+            if (comment == null)
+            {
+                return NotFound("Comment not found.");
+            }
+
+            if (comment.isApproved)
+            {
+                return BadRequest("Comment is already approved.");
+            }
+
+            comment.isApproved = true;
+            _commentService.Update(comment);
+            return Ok($"Comment with ID {id} has been approved.");
+        }
     }
 }

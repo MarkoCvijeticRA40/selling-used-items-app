@@ -2,6 +2,7 @@
 {
     public interface IJWTService
     {
-        string GenerateToken(string email, string password);
+        public string GenerateToken(string email, string password, string role);
+        public bool isTokenExpired(string token);
     }
 }
