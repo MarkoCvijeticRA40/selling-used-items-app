@@ -48,5 +48,11 @@ namespace selling_used_items_app_backend.Repository
         {
             return _context.Users.FirstOrDefault(u => u.email == email);
         }
+
+        public string GetUserEmailById(int userId)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.id == userId);
+            return user != null ? user.email : null;
+        }     
     }
 }

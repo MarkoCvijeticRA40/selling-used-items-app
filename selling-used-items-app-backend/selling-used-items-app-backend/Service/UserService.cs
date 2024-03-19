@@ -93,5 +93,11 @@ namespace selling_used_items_app_backend.Service
                 _userRepository.Update(user);
             }
         }
+
+        public string GetUserEmailById(int userId)
+        {
+            var user = _userRepository.Get(userId);
+            return user != null ? user.email : null;
+        }
     }
 }

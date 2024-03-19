@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using selling_used_items_app_backend.Enum;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
 using selling_used_items_app_backend.UOW;
@@ -17,7 +19,6 @@ namespace selling_used_items_app_backend.Controllers
         private readonly UserUpdateValidator _updateUserValidator;
         private readonly UserDeleteValidator _deleteUserValidator;
         private readonly IJWTService _jwtService;
-        private const string SecretKey = "MySecretKey";
         private readonly ApplicationDbContext _dbContext;
 
         public UserController(IEmailService emailService,ApplicationDbContext dbContext, IJWTService jwtService, IUserService userService, UserCreateValidator createUserValidator, UserUpdateValidator updateUserValidator, UserDeleteValidator deleteUserValidator)
@@ -32,6 +33,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult<IEnumerable<User>> GetAll()
         {
             var users = _userService.GetAll();
@@ -79,18 +81,18 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpPost("generate-token")]
-        public IActionResult GenerateToken(string email, string password)
+        public IActionResult GenerateToken(string email, string password, string role)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 return BadRequest("Email and password are required.");
             }
-            string token = _jwtService.GenerateToken(email, password);
+            string token = _jwtService.GenerateToken(email, password, role);
             return Ok(new { Token = token });
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string password, string role)
         {
             var user = _userService.GetByEmail(email);
             if (user == null)
@@ -105,7 +107,7 @@ namespace selling_used_items_app_backend.Controllers
                 return Unauthorized("Wrong credentials!");
             }
 
-            var token = _jwtService.GenerateToken(email, password);
+            var token = _jwtService.GenerateToken(email, password, role);
             return Ok(new { Token = token });
         }
 
