@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  width: 400px; /* Širina kontejnera */
+  margin-top: 0px;
+}
+
+input[type=text], input[type=password] {
+  width: calc(111% - 40px); /* Širina će biti 100% minus 40 piksela paddinga sa svake strane */
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.imgcontainer {
+  text-align: left; /* Postavljanje teksta ulevo */
+  margin: -90px 0 12px 0;
+  position: relative;
+  display: flex; /* Koristi flexbox */
+  justify-content: flex-start; /* Poravnavanje sadržaja na lijevu stranu */
+}
+
+img.avatar {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.psw {
+  display: block;
+  text-align: center; /* Postavljanje teksta u centar */
+  margin-left: 5px; /* Negativna margina za pomjeranje nalevo (opciono) */
+}
+
+
