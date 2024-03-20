@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="advertisement-display.component.css">
+</head>
+<body>
+
+<div class="container">
+    <input type="text" id="searchInput" placeholder="Search..." class="searchInput">
+    <div class="sortContainer">
+        <select id="priceSort" class="sortSelect">
+            <option value="asc">Sort by</option>
+            <option value="asc">Sort by ASC price</option>
+            <option value="desc">Sort by DESC price</option>
+            <option value="asc">Sort by ASC name</option>
+            <option value="desc">Sort by DESC name</option>
+        </select>
+    </div>
+    <div class="priceRangeContainer">
+        <input type="range" id="priceRange" class="priceRange" min="0" max="1000" step="10" value="0">
+        <span id="priceRangeValue">$0</span>
+    </div>
+  
+    <table id="advertisementTable" class="advertisementTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Advertisement 1</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Advertisement 2</td>
+                <td>$200</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

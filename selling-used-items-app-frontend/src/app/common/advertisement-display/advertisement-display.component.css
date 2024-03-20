@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.searchInput,
+.sortContainer,
+.priceRangeContainer {
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.searchInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    margin-bottom: 10px; /* Povećavamo margin-bottom */
+    margin-top: 5px; /* Dodajemo margin-top */
+}
+
+
+.sortSelect,
+.priceRange {
+    width: 100%;
+    padding: 9.5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.priceRange {
+    width: 50%; /* Smanjujemo širinu na 50% */
+    padding: 5px; /* Smanjujemo padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#priceRangeValue {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.advertisementTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.advertisementTable th,
+.advertisementTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.advertisementTable th {
+    background-color: #f2f2f2;
+}
+
+.advertisementTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
