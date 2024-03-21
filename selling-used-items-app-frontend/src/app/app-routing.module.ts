@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AppComponent } from './app.component';
 import { AdvertisementDisplayComponent } from './common/advertisement-display/advertisement-display.component';
 import { HeaderBarComponent } from './common/header-bar/header-bar.component';
+import { ProfileComponent } from './common/profile/profile.component';
 
 const routes: Routes = [
   { 
@@ -15,8 +16,14 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent},
       { path: 'forgot-password', component: ForgotPasswordComponent},
-      { path: 'advertisement', component: AdvertisementDisplayComponent},
-      { path: 'header', component: HeaderBarComponent}
+      { 
+        path: 'header', 
+        component: HeaderBarComponent,
+        children: [
+          { path: 'advertisement', component: AdvertisementDisplayComponent },
+          { path: 'profile', component: ProfileComponent }
+        ]
+      }
     ]
   }
 ];

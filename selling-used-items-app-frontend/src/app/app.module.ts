@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { RouterModule } from '@angular/router';
 import { AdvertisementDisplayComponent } from './common/advertisement-display/advertisement-display.component';
 import { HeaderBarComponent } from './common/header-bar/header-bar.component';
+import { ProfileComponent } from './common/profile/profile.component';
+import { ChangePasswordComponent } from './common/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { HeaderBarComponent } from './common/header-bar/header-bar.component';
     ForgotPasswordComponent,
     AdvertisementDisplayComponent,
     HeaderBarComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
