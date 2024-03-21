@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AdvertisementDisplayComponent } from './common/advertisement-display/advertisement-display.component';
 import { HeaderBarComponent } from './common/header-bar/header-bar.component';
 import { ProfileComponent } from './common/profile/profile.component';
+import { ChangePasswordComponent } from './common/change-password/change-password.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { 
@@ -17,16 +19,24 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent},
       { path: 'forgot-password', component: ForgotPasswordComponent},
       { 
-        path: 'header', 
-        component: HeaderBarComponent,
+        path: 'home', 
+        component: HomeComponent,
         children: [
-          { path: 'advertisement', component: AdvertisementDisplayComponent },
-          { path: 'profile', component: ProfileComponent }
+          { 
+            path: 'header', 
+            component: HeaderBarComponent,
+            children: [
+              { path: 'advertisement', component: AdvertisementDisplayComponent },
+              { path: 'profile', component: ProfileComponent },
+              { path: 'change-password', component: ChangePasswordComponent},
+            ]
+          },
         ]
       }
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -8,16 +8,26 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class HeaderBarComponent implements OnInit {
   
-  showProfile: boolean = false;
+  childComponent: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.checkProfileInUrl();
+    this.setChildComponent();
+    console.log(this.childComponent);
   }
 
-  checkProfileInUrl() {
-    this.showProfile = this.router.url.includes('profile');
+  setChildComponent() {
+    const url = this.router.url;
+    if (url.includes('profile')) {
+      this.childComponent = 'ProfileComponent';
+    } else if (url.includes('advertisement')) {
+      this.childComponent = 'AdvertisementDisplayComponent';
+    } else if (url.includes('change-password')) {
+      this.childComponent = 'ChangePasswordComponent';
+    } else {
+      this.childComponent = '';
+    }
   }
 
   navigateToLogin() {
