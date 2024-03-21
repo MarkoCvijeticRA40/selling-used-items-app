@@ -20,4 +20,8 @@ export class HomeComponent implements OnInit {
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
+
+  navigateToProfile() {
+    this.router.navigate(['/home/profile']);
+  }
 }
