@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RouterModule } from '@angular/router';
 import { AdvertisementDisplayComponent } from './common/advertisement-display/advertisement-display.component';
+import { HeaderBarComponent } from './common/header-bar/header-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AdvertisementDisplayComponent } from './common/advertisement-display/ad
     RegisterComponent,
     ForgotPasswordComponent,
     AdvertisementDisplayComponent,
+    HeaderBarComponent,
   ],
   imports: [
     BrowserModule,

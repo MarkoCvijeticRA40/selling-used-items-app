@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AppComponent } from './app.component';
 import { AdvertisementDisplayComponent } from './common/advertisement-display/advertisement-display.component';
+import { HeaderBarComponent } from './common/header-bar/header-bar.component';
 
 const routes: Routes = [
   { 
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent},
       { path: 'forgot-password', component: ForgotPasswordComponent},
-      { path: 'advertisement', component: AdvertisementDisplayComponent}
+      { path: 'advertisement', component: AdvertisementDisplayComponent},
+      { path: 'header', component: HeaderBarComponent}
     ]
   }
 ];
