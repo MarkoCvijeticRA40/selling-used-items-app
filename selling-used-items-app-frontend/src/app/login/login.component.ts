@@ -9,9 +9,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
   
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   constructor(private router: Router) { }
 
+  navigateToProfile() {
+    this.router.navigate(['/home/profile']);
+    console.log("here");
+  }
 }

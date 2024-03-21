@@ -9,12 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   
-  childComponent: string = '';
-
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.childComponent);
+
   }
 
   navigateToLogin() {
