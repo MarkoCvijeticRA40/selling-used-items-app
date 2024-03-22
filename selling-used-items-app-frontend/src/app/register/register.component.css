@@ -1,46 +1,67 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .container {
-    text-align: center;
-    width: 400px; /* Širina kontejnera */
-  }
-  
-  input[type=text], input[type=password], input[type=email] {
-    width: calc(111% - 40px); /* Širina će biti 100% minus 40 piksela paddinga sa svake strane */
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  .imgcontainer {
-    text-align: center; /* Postavljanje teksta u centar */
-    margin-bottom: 20px; /* Dodavanje margine na dno */
-  }
-  
-  img.avatar {
-    width: 400px; /* Prilagodite veličinu slike po potrebi */
-    border-radius: 50%;
-  }
-  
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center; /* Centriranje teksta */
+  width: 400px; /* Širina kontejnera */
+  position: absolute; /* Postavljanje apsolutne pozicije */
+  top: 50%; /* Pomeranje na 50% visine ekrana */
+  left: 50%; /* Pomeranje na 50% širine ekrana */
+  transform: translate(-50%, -50%); /* Centriranje po vertikali i horizontali */
+}
+
+
+input[type=text], input[type=password], input[type=email] {
+  width: calc(111% - 40px); /* Širina će biti 100% minus 40 piksela paddinga sa svake strane */
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.imgcontainer {
+  text-align: center; /* Postavljanje teksta u centar */
+  margin-bottom: 20px; /* Dodavanje margine na dno */
+}
+
+img.avatar {
+  width: 400px; /* Prilagodite veličinu slike po potrebi */
+  border-radius: 50%;
+}
+
+.back-button {
+  background-color: #FF0000;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #CC0000;
+}
+
+

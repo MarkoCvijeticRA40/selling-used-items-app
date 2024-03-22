@@ -1,0 +1,142 @@
+.header {
+background-color: #04AA6D;
+color: white;
+text-align: center;
+padding: 10px;
+position: relative; /* Dodato */
+}
+
+.logo {
+vertical-align: middle;
+margin-right: 10px;
+width: 90px;
+height: auto;
+}
+
+.search,
+.addAdvertisement,
+.logout {
+display: inline-block;
+vertical-align: middle;
+}
+
+.search {
+margin-right: 10px;
+position: relative; /* Dodato */
+}
+
+.searchInput {
+padding: 8px;
+border: none;
+border-radius: 5px;
+width: 300px;
+padding-right: 45px; /* Promenjeno */
+}
+
+.searchIcon {
+position: absolute;
+right: 8px;
+top: 50%;
+transform: translateY(-50%);
+width: 20px;
+height: 20px;
+background: url('../../assets/loupe.png') no-repeat center;
+background-size: contain;
+}
+
+.addAdvertisement {
+margin-left: 10px;
+}
+
+.addAdvertisement button {
+padding: 8px 16px;
+border: none;
+border-radius: 5px;
+background-color: red;
+color: white;
+cursor: pointer;
+height: 33px;
+}
+
+.logout {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 23px;
+background: url('../../assets/logout.png') no-repeat center;
+background-size: contain;
+border: none; 
+cursor: pointer;
+padding: 0; /* Remove padding */
+background-color: transparent; /* Make background transparent */
+}
+
+
+
+.logoutIcon {
+width: 20px; /* Postavljamo širinu ikone na 20 piksela */
+height: 20px; /* Postavljamo visinu ikone na 20 piksela */
+background: url('../../assets/logout.png') no-repeat center;
+background-size: contain;
+}
+
+.profile {
+position: absolute;
+right: 50px; /* Adjusted position */
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 25px;
+background: url('../../assets/profile.png') no-repeat center;
+background-size: contain;
+border: none;
+cursor: pointer;
+}
+
+.profileIcon {
+width: 20px; /* Adjusted width */
+height: 20px; /* Adjusted height */
+background-size: contain;
+}
+
+.home {
+position: absolute;
+left: 1620px; /* Pomeramo dugme "home" za 50px (širina dugmeta "profile" + 10px razmaka) */
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 25px;
+background: url('../../assets/home.png') no-repeat center; /* Dodaj putanju do ikonice za "home" */
+background-size: contain;
+border: none;
+cursor: pointer;
+}
+
+.homeIcon {
+width: 20px; /* Podesi širinu ikonice */
+height: 20px; /* Podesi visinu ikonice */
+background-size: contain;
+
+}
+
+
+.reportUser {
+position: absolute;
+left: 1585px; /* Pomeramo dugme "reportUser" za 45px (širina dugmeta "profile" + 35px razmaka) */
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 25px;
+background: url('../../assets/support.png') no-repeat center; /* Dodaj putanju do ikonice za "reportUser" */
+background-size: contain;
+border: none;
+cursor: pointer;
+}
+
+.reportUserIcon {
+width: 20px; /* Podesi širinu ikonice */
+height: 20px; /* Podesi visinu ikonice */
+background-size: contain;
+}

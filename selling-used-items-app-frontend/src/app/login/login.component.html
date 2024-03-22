@@ -1,33 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="login.component.css">
-</head>
-<body>
-
 <div class="container">
-  <form action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <img src="assets/logo1.png" class="avatar">
-    </div>
-
-    <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="uname" required>
-    <br>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-      
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-
-    <div class="container">
-      <span class="psw"><a href="">Forgot password?</a></span>
-    </div>
-  </form>
+  <div class="imgcontainer">
+    <img src="assets/logo1.png" class="avatar">
+  </div>
+  
+  <label for="uname"><b>Email</b></label>
+  <input type="text" placeholder="Enter Email" name="uname">
+  <br>
+  <label for="psw"><b>Password</b></label>
+  <input type="password" placeholder="Enter Password" name="psw">
+  <button type="button" (click)="navigateToProfile()">Login</button>
+  <input type="checkbox" checked="checked" name="remember"> Remember me
+  <div>
+    <span class="psw"><a [routerLink]="['/forgot-password']">Forgot password?</a></span>
+  </div>
+  <div>
+    <span class="psw"><a [routerLink]="['/register']">Don't have account?</a></span>
+  </div>
 </div>
-
-</body>
-</html>

@@ -1,0 +1,64 @@
+.advertisement-form {
+max-width: 400px;
+margin: 20px auto;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #f9f9f9;
+position: relative;
+}
+
+.form-group {
+margin-bottom: 15px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.purchase-button {
+background-color: #007bff;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+position: absolute;
+left: 20px;
+bottom: 20px;
+}
+
+.purchase-button:hover {
+background-color: #0056b3;
+}
+
+.button-group {
+display: flex;
+justify-content: flex-end;
+margin-top: 20px;
+}
+
+.back-button {
+background-color: #FF0000;
+color: white;
+padding: 10px 15px;
+margin-left: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+}
+
+.back-button:hover {
+background-color: #CC0000;
+}

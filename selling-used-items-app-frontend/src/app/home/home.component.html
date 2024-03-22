@@ -1,0 +1,28 @@
+<div class="header">
+    <img src="./assets/logo1.png" alt="Logo" class="logo">
+    <div class="search" style="position: relative;">
+        <input type="text" id="searchInput" placeholder="Search..." class="searchInput">
+        <span class="searchIcon"></span>
+    </div>
+    <div class="addAdvertisement">
+        <button (click)="navigateToCreateAdvertisement()">
+            <span class="icon">+</span> Add Advertisement
+        </button>
+    </div>
+    <div>
+        <button class="home" (click)="navigateToHome()">
+            <span class="homeIcon"></span>
+        </button>
+        <button class="logout" (click)="navigateToLogin()">
+            <span class="logoutIcon"></span>
+        </button>
+        <button class="profile" (click)="navigateToProfile()">
+            <span class="profileIcon"></span>
+        </button>
+        <button class="reportUser" (click)="navigateToReportUser()">
+            <span class="reportUserIcon"></span>
+        </button>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

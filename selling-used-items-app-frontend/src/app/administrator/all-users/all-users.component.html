@@ -1,0 +1,29 @@
+<div class="container">
+    <table id="userTable" class="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>User Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.userRole }}</td>
+                <td>{{ user.status }}</td>
+                <td>
+                    <button *ngIf="user.status === 'Active'" class="block-button" (click)="blockUser(user)">Block</button>
+                    <button *ngIf="user.status === 'Blocked'" class="unblock-button" (click)="unblockUser(user)">Unblock</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

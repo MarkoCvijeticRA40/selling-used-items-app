@@ -1,0 +1,47 @@
+.loginForm {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px; /* Prilagodite širinu forme po potrebi */
+    margin: 20px auto; /* Centralizacija forme */
+    text-align: center;
+}
+
+.loginForm h2 {
+    margin-bottom: 20px;
+}
+
+.loginForm form {
+    display: grid;
+    gap: 10px;
+}
+
+.loginForm label {
+    font-weight: bold;
+}
+
+.loginForm input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loginForm button {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.loginForm button[type="submit"] {
+    width: 100%; /* Razvučemo dugme da pokrije širinu input polja */
+}
+
+.loginForm button[type="button"] {
+    width: 100%;
+    background-color: #FF0000; /* Promenjena boja za "Back" dugme */
+    margin-top: 10px; /* Dodat razmak između "Submit" i "Back" dugmeta */
+}

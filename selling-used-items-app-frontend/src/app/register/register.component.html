@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="register.component.css"> <!-- Povezivanje sa CSS datotekom -->
-</head>
-<body>
-
 <div class="container">
   <form action="/register_page.php" method="post">
     <div class="imgcontainer">
@@ -29,7 +21,5 @@
       
     <button type="submit">Register</button>
   </form>
+  <button type="button" class="back-button" (click)="navigateToLogin()">Back</button>
 </div>
-
-</body>
-</html>
