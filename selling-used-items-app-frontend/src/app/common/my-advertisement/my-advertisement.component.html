@@ -1,0 +1,28 @@
+<div class="container">
+    <table id="advertisementTable" class="advertisementTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Edit</th> 
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ad of advertisements">
+                <td>{{ ad.name }}</td>
+                <td>{{ ad.price }}</td>
+                <td>{{ ad.description }}</td>
+                <td>{{ ad.status }}</td>
+                <td>
+                    <button *ngIf="ad.status === 'Available'" class="delete-button">Edit</button>
+                </td>
+                <td>
+                    <button *ngIf="ad.status === 'Available'" class="edit-button">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

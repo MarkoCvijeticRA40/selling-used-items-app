@@ -92,3 +92,29 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.delete-button {
+    background-color: #ff0000; /* Crvena boja */
+    color: white; /* Bela boja teksta */
+    border: none; /* Bez ivica */
+    padding: 8px 12px; /* Malo prostora unutar dugmeta */
+    border-radius: 5px; /* Zaobljeni ivici */
+    cursor: pointer; /* Pokazivač na mišu se menja u ruku kada je preko dugmeta */
+  }
+  
+  .delete-button:hover {
+    background-color: #cc0000; /* Tamnija nijansa crvene boje kada je dugme hoverovano */
+  }
+
+  .edit-button {
+    background-color: #008000; /* Zelena boja */
+    color: white; /* Bela boja teksta */
+    border: none; /* Bez ivica */
+    padding: 8px 12px; /* Malo prostora unutar dugmeta */
+    border-radius: 5px; /* Zaobljeni ivici */
+    cursor: pointer; /* Pokazivač na mišu se menja u ruku kada je preko dugmeta */
+  }
+  
+  .edit-button:hover {
+    background-color: #006400; /* Tamnija nijansa zelene boje kada je dugme hoverovano */
+  }
