@@ -1,63 +1,40 @@
-
-<div class="container">
-
-    <div class="alphabetContainer">
-        <div class="alphabetFilter">A</div>
-        <div class="alphabetFilter">B</div>
-        <div class="alphabetFilter">C</div>
-        <div class="alphabetFilter">D</div>
-        <div class="alphabetFilter">E</div>
-        <div class="alphabetFilter">F</div>
-        <div class="alphabetFilter">G</div>
-        <div class="alphabetFilter">H</div>
-        <div class="alphabetFilter">I</div>
-        <div class="alphabetFilter">J</div>
-        <div class="alphabetFilter">K</div>
-        <div class="alphabetFilter">L</div>
-        <div class="alphabetFilter">M</div>
-        <div class="alphabetFilter">N</div>
-        <div class="alphabetFilter">O</div>
-        <div class="alphabetFilter">P</div>
-        <div class="alphabetFilter">Q</div>
-        <div class="alphabetFilter">R</div>
-        <div class="alphabetFilter">S</div>
-        <div class="alphabetFilter">T</div>
-        <div class="alphabetFilter">U</div>
-        <div class="alphabetFilter">V</div>
-        <div class="alphabetFilter">W</div>
-        <div class="alphabetFilter">X</div>
-        <div class="alphabetFilter">Y</div>
-        <div class="alphabetFilter">Z</div>
+<div class="advertisement-form">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <div class="static-text">{{ advertisement.name }}</div>
+    </div>
+  
+    <hr>
+  
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <div class="static-text">{{ advertisement.price }}</div>
     </div>
 
-    <div class="sortContainer">
-        <select id="priceSort" class="sortSelect">
-            <option value="asc">Sort by</option>
-            <option value="asc">Sort by ASC price</option>
-            <option value="desc">Sort by DESC price</option>
-            <option value="asc">Sort by ASC name</option>
-            <option value="desc">Sort by DESC name</option>
-        </select>
+    <hr>
+  
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <div class="static-text">{{ advertisement.description }}</div>
     </div>
-    <table id="advertisementTable" class="advertisementTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Advertisement 1</td>
-                <td>$100</td>
-                <td>Nudim polovan automobil</td>
-            </tr>
-            <tr>
-                <td>Advertisement 2</td>
-                <td>$200</td>
-                <td>Nudim polovan telefon</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <hr>
+  
+    <div class="image-container">
+      <img src="{{ advertisement.imageUrl }}" alt="Advertisement Image">
+    </div>
+  
+    <hr> 
+  
+    <div class="form-group">
+      <label for="commentaries">Commentaries about advertisement creator:</label>
+      <div class="static-text">{{ advertisement.commentaries }}</div>
+    </div>
+  
+    <hr>
+
+    <div class="button-group">
+      <button *ngIf="advertisement.status === 'Available'" class="purchase-button" (click)="purchaseAdvertisement()">Purchase</button>
+      <button class="back-button" (click)="navigateToAdvertisements()">Back</button>
+    </div>    
 </div>

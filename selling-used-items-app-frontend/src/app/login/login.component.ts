@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
   constructor(private router: Router) { }
 
   navigateToProfile() {
-    this.router.navigate(['/home/profile']);
+    this.router.navigate(['/home/advertisements']);
     console.log("here");
   }
 }

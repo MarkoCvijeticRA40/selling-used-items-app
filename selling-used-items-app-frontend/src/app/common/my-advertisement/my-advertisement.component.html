@@ -17,10 +17,10 @@
                 <td>{{ ad.description }}</td>
                 <td>{{ ad.status }}</td>
                 <td>
-                    <button *ngIf="ad.status === 'Available'" class="delete-button">Edit</button>
+                    <button *ngIf="ad.status === 'Available'" class="edit-button">Edit</button>
                 </td>
                 <td>
-                    <button *ngIf="ad.status === 'Available'" class="edit-button">Delete</button>
+                    <button *ngIf="ad.status === 'Available'" class="delete-button">Delete</button>
                 </td>
             </tr>
         </tbody>

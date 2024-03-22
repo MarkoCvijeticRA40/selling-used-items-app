@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './common/change-password/change-passwor
 import { HomeComponent } from './home/home.component';
 import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 import { MyAdvertisementComponent } from './common/my-advertisement/my-advertisement.component';
+import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
 
 const routes: Routes = [
   { 
@@ -23,13 +24,13 @@ const routes: Routes = [
         path: 'home', 
         component: HomeComponent,
         children: [ 
-          { path: 'advertisement', component: AdvertisementDisplayComponent },
+          { path: 'advertisements', component: AllAdvertisementsComponent },
+          { path: 'advertisement', component: AdvertisementDisplayComponent},        
           { path: 'profile', component: ProfileComponent,
           children: [
             { path: 'edit-profile', component: EditProfileComponent },
-            { path: 'my-advertisement', component: MyAdvertisementComponent}
+            { path: 'my-advertisements', component: MyAdvertisementComponent}
           ] 
-        
         },
         { path: 'change-password', component: ChangePasswordComponent},
         ]
@@ -37,7 +38,6 @@ const routes: Routes = [
     ]
   }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './common/change-password/change-passwor
 import { HomeComponent } from './home/home.component';
 import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 import { MyAdvertisementComponent } from './common/my-advertisement/my-advertisement.component';
+import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MyAdvertisementComponent } from './common/my-advertisement/my-advertise
     HomeComponent,
     EditProfileComponent,
     MyAdvertisementComponent,
+    AllAdvertisementsComponent,
   ],
   imports: [
     BrowserModule,
