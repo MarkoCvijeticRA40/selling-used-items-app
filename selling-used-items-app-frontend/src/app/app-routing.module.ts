@@ -14,6 +14,7 @@ import { AllAdvertisementsComponent } from './common/all-advertisements/all-adve
 import { CreateAdvertisementComponent } from './common/create-advertisement/create-advertisement.component';
 import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
 import { ReportUserComponent } from './registered-user/report-user/report-user.component';
+import { AllUsersComponent } from './administrator/all-users/all-users.component';
 
 const routes: Routes = [
   { 
@@ -36,6 +37,7 @@ const routes: Routes = [
           children: [
             { path: 'edit-profile', component: EditProfileComponent },
             { path: 'my-advertisements', component: MyAdvertisementComponent},
+            { path: 'all-users', component: AllUsersComponent}
           ] 
         },
         { path: 'change-password', component: ChangePasswordComponent},

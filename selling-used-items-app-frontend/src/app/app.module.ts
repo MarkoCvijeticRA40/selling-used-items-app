@@ -17,6 +17,7 @@ import { CreateAdvertisementComponent } from './common/create-advertisement/crea
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
 import { ReportUserComponent } from './registered-user/report-user/report-user.component';
+import { AllUsersComponent } from './administrator/all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ReportUserComponent } from './registered-user/report-user/report-user.c
     CreateAdvertisementComponent,
     EditAdvertisementComponent,
     ReportUserComponent,
+    AllUsersComponent,
   ],
   imports: [
     BrowserModule,
