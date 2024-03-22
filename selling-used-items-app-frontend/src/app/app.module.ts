@@ -10,6 +10,7 @@ import { AdvertisementDisplayComponent } from './common/advertisement-display/ad
 import { ProfileComponent } from './common/profile/profile.component';
 import { ChangePasswordComponent } from './common/change-password/change-password.component';
 import { HomeComponent } from './home/home.component';
+import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     ChangePasswordComponent,
     HomeComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AdvertisementDisplayComponent } from './common/advertisement-display/ad
 import { ProfileComponent } from './common/profile/profile.component';
 import { ChangePasswordComponent } from './common/change-password/change-password.component';
 import { HomeComponent } from './home/home.component';
+import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { 
@@ -22,8 +23,13 @@ const routes: Routes = [
         component: HomeComponent,
         children: [ 
           { path: 'advertisement', component: AdvertisementDisplayComponent },
-          { path: 'profile', component: ProfileComponent },
-          { path: 'change-password', component: ChangePasswordComponent},
+          { path: 'profile', component: ProfileComponent,
+          children: [
+            { path: 'edit-profile', component: EditProfileComponent }
+          ] 
+        
+        },
+        { path: 'change-password', component: ChangePasswordComponent},
         ]
       }
     ]

@@ -10,8 +10,6 @@ export class ProfileComponent {
 
   constructor(private router: Router) { }
 
-  redirectToChangePassword(): void {
-    this.router.navigate(['/home/change-password']);
+  ngOnInit(): void {
   }
-
 }
