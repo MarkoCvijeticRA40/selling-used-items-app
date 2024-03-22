@@ -1,0 +1,31 @@
+<div class="container">
+    <form [formGroup]="advertisementForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [formControl]="name">
+        <div *ngIf="name.invalid && name.touched" class="text-danger">{{ nameError }}</div>
+      </div>
+    
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" id="price" [formControl]="price">
+        <div *ngIf="price.invalid && price.touched" class="text-danger">{{ priceError }}</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" [formControl]="description"></textarea>
+        <div *ngIf="description.invalid && description.touched" class="text-danger">{{ descriptionError }}</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" [formControl]="location">
+        <div *ngIf="location.invalid && location.touched" class="text-danger">{{ locationError }}</div>
+      </div>
+    
+      <button type="submit" [disabled]="advertisementForm.invalid">Submit</button>
+      <button class="back-button" (click)="navigateToAdvertisements()">Back</button>
+    </form>
+  </div>
+  

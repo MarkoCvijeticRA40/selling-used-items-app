@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
   navigateToProfile() {
     this.router.navigate(['/home/profile/edit-profile']);
   }
+
+  navigateToCreateAdvertisement() {
+    this.router.navigate(['/home/create-advertisement']);
+  }
 }

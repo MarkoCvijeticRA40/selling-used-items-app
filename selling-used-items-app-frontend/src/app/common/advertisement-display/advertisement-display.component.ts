@@ -11,10 +11,12 @@ export class AdvertisementDisplayComponent {
   advertisement: any = {
     name: 'Advertisement 1',
     price: '$100',
-    commentaries: 'This is a great product! Rating: 4.5, Dejan Dejanovic',
+    commentaries: 'Great man! ★★★★★ - Dejan Dejanovic',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut euismod, justo non rhoncus tincidunt, risus felis consectetur dolor.',
-    status: 'Available'
+    status: 'Available',
+    contact: 'marko.cvijetic@vegait.rs'
   };
+  
 
   constructor(private router: Router) {}
 

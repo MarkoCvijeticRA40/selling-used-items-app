@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 import { MyAdvertisementComponent } from './common/my-advertisement/my-advertisement.component';
 import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
+import { CreateAdvertisementComponent } from './common/create-advertisement/create-advertisement.component';
 
 const routes: Routes = [
   { 
@@ -25,11 +26,12 @@ const routes: Routes = [
         component: HomeComponent,
         children: [ 
           { path: 'advertisements', component: AllAdvertisementsComponent },
-          { path: 'advertisement', component: AdvertisementDisplayComponent},        
+          { path: 'advertisement', component: AdvertisementDisplayComponent},     
+          { path: 'create-advertisement', component: CreateAdvertisementComponent}  , 
           { path: 'profile', component: ProfileComponent,
           children: [
             { path: 'edit-profile', component: EditProfileComponent },
-            { path: 'my-advertisements', component: MyAdvertisementComponent}
+            { path: 'my-advertisements', component: MyAdvertisementComponent},
           ] 
         },
         { path: 'change-password', component: ChangePasswordComponent},

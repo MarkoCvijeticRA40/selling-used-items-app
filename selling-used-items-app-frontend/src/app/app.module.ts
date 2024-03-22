@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { EditProfileComponent } from './common/edit-profile/edit-profile.component';
 import { MyAdvertisementComponent } from './common/my-advertisement/my-advertisement.component';
 import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
+import { CreateAdvertisementComponent } from './common/create-advertisement/create-advertisement.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,13 @@ import { AllAdvertisementsComponent } from './common/all-advertisements/all-adve
     EditProfileComponent,
     MyAdvertisementComponent,
     AllAdvertisementsComponent,
+    CreateAdvertisementComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()
