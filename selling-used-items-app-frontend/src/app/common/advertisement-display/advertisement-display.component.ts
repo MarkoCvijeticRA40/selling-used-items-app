@@ -28,4 +28,6 @@ export class AdvertisementDisplayComponent {
     alert('Successfully purchased advertisement!');
     this.navigateToAdvertisements();
   }
+
+  
 }

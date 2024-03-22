@@ -12,6 +12,8 @@ import { EditProfileComponent } from './common/edit-profile/edit-profile.compone
 import { MyAdvertisementComponent } from './common/my-advertisement/my-advertisement.component';
 import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
 import { CreateAdvertisementComponent } from './common/create-advertisement/create-advertisement.component';
+import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
+import { ReportUserComponent } from './registered-user/report-user/report-user.component';
 
 const routes: Routes = [
   { 
@@ -27,7 +29,9 @@ const routes: Routes = [
         children: [ 
           { path: 'advertisements', component: AllAdvertisementsComponent },
           { path: 'advertisement', component: AdvertisementDisplayComponent},     
-          { path: 'create-advertisement', component: CreateAdvertisementComponent}  , 
+          { path: 'create-advertisement', component: CreateAdvertisementComponent}, 
+          { path: 'edit-advertisement', component: EditAdvertisementComponent},
+          { path: 'report-user', component: ReportUserComponent},
           { path: 'profile', component: ProfileComponent,
           children: [
             { path: 'edit-profile', component: EditProfileComponent },

@@ -46,7 +46,13 @@
             <td>{{ ad.price }}</td>
             <td>{{ ad.description }}</td>
             <td><button class="view-button" (click)="navigateToAdvertisementDisplay()">View</button></td>
+            <td><button class="delete-button">Delete</button></td>
           </tr>
         </tbody>
-      </table>      
+      </table>  
+      <div class="pagination">
+        <button class="pagination-button">
+            <div class="pagination-content">1</div>
+        </button>
+    </div>  
 </div>

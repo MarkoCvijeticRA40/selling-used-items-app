@@ -9,9 +9,5 @@ import { Router } from '@angular/router';
 export class ChangePasswordComponent {
 
   constructor(private router: Router) { }
-
-  redirectToProfile(): void {
-    this.router.navigate(['/home/profile']);
-  }
-
+  
 }

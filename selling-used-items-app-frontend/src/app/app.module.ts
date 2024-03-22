@@ -15,6 +15,8 @@ import { MyAdvertisementComponent } from './common/my-advertisement/my-advertise
 import { AllAdvertisementsComponent } from './common/all-advertisements/all-advertisements.component';
 import { CreateAdvertisementComponent } from './common/create-advertisement/create-advertisement.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
+import { ReportUserComponent } from './registered-user/report-user/report-user.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     MyAdvertisementComponent,
     AllAdvertisementsComponent,
     CreateAdvertisementComponent,
+    EditAdvertisementComponent,
+    ReportUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [
     provideClientHydration()

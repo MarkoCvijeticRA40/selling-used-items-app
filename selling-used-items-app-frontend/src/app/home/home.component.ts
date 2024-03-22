@@ -19,11 +19,19 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  navigateToHome() {
+    this.router.navigate(['/home/advertisements']);
+  }
+
   navigateToProfile() {
     this.router.navigate(['/home/profile/edit-profile']);
   }
 
   navigateToCreateAdvertisement() {
     this.router.navigate(['/home/create-advertisement']);
+  }
+
+  navigateToReportUser() {
+    this.router.navigate(['/home/report-user']);
   }
 }

@@ -118,3 +118,26 @@
   .edit-button:hover {
     background-color: #006400; /* Tamnija nijansa zelene boje kada je dugme hoverovano */
   }
+
+  .pagination {
+    text-align: center;
+    margin-top: 20px; /* Dodajte željeni razmak između tabele i dugmeta paginacije */
+}
+
+.pagination-button {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative; /* Dodajemo relativnu poziciju */
+    top: -20px; /* Pomeramo dugme 20 piksela gore */
+    margin-left: 700px;
+}
+
+
+.pagination-button:hover {
+    background-color: #0056b3;
+}
