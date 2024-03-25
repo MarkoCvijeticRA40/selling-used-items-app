@@ -57,8 +57,6 @@ namespace selling_used_items_app_backend.Controllers
             {
                 return NotFound();
             }
-
-            purchase.purchaseStatus = (Enum.PurchaseStatus)newStatus;
             _purchaseService.Update(purchase);
 
             return Ok($"Purchase with ID {id} status has been updated to {newStatus}.");

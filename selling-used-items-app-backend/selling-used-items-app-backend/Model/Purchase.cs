@@ -15,6 +15,5 @@ namespace selling_used_items_app_backend.Model
 
         [ForeignKey("Advertisement")]
         public int advertisementId { get; set; }
-        public PurchaseStatus purchaseStatus { get; set; }
     }
 }

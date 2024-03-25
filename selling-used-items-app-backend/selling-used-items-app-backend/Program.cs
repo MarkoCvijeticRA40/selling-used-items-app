@@ -10,7 +10,6 @@ using selling_used_items_app_backend.Validator.CommentValidator;
 using selling_used_items_app_backend.Validator.PurchaseValidator;
 using selling_used_items_app_backend.Validator.UserValidator;
 using selling_used_items_app_backend.Validator.ReportValidator;
-using selling_used_items_app_backend.Validator.MessageValidator;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -43,21 +42,18 @@ builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddScoped<IJWTService, JWTService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IReportService, ReportService>();
-builder.Services.AddScoped<IMessageService, MessageService>();
 // Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
-builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 // Controllers
 builder.Services.AddScoped<AdvertisementController>();
 builder.Services.AddScoped<UserController>();
 builder.Services.AddScoped<CommentController>();
 builder.Services.AddScoped<PurchaseController>();
 builder.Services.AddScoped<ReportController>();
-builder.Services.AddScoped<MessageController>();
 // Validators
 builder.Services.AddScoped<AdvertisementCreateValidator>();
 builder.Services.AddScoped<AdvertisementDeleteValidator>();
@@ -69,7 +65,6 @@ builder.Services.AddScoped<UserCreateValidator>();
 builder.Services.AddScoped<UserDeleteValidator>();
 builder.Services.AddScoped<UserUpdateValidator>();
 builder.Services.AddScoped<ReportCreateValidator>();
-builder.Services.AddScoped<MessageCreateValidator>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
