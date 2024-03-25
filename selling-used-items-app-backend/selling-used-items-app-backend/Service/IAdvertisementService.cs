@@ -10,5 +10,6 @@ namespace selling_used_items_app_backend.Service
         void Update(Advertisement advertisement);
         void Delete(int id);
         IEnumerable<Advertisement> Search(string name, char? firstLetter, decimal? startPrice, decimal? endPrice);
+        //void Sell(int advertisementId);
     }
 }

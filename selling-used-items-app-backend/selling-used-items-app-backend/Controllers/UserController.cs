@@ -33,7 +33,6 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
         public ActionResult<IEnumerable<User>> GetAll()
         {
             var users = _userService.GetAll();
