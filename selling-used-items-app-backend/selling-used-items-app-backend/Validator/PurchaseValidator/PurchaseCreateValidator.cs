@@ -35,11 +35,6 @@ namespace selling_used_items_app_backend.Validator.PurchaseValidator
                 return new ValidationResult("Invalid advertisementId. Advertisement does not exist.");
             }
 
-            if (purchase.purchaseStatus != 0)
-            {
-                return new ValidationResult("Purchase status must be 0 for creating.");
-            }
-
             return ValidationResult.Success;
         }
     }

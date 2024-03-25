@@ -1,9 +1,9 @@
 ﻿namespace selling_used_items_app_backend.Enum
 {
-    public enum PurchaseStatus
+    public enum AdvertisementStatus
     {        
-        InProcess,          
-        Completed,
-        Rejected
+        Avaliable,         
+        Reserved,
+        Sold
     }
 }
