@@ -28,6 +28,6 @@ namespace selling_used_items_app_backend.Model
     public int userId { get; set; }
 
     [Required]
-    public AdvertisementStatus advertisementStatus { get; set;}
+    public AdvertisementStatus advertisementStatus { get; set; }
     }
 }

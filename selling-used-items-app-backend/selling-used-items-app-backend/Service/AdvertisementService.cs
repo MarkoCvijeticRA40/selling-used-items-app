@@ -1,5 +1,7 @@
-﻿using selling_used_items_app_backend.Model;
+﻿using selling_used_items_app_backend.Enum;
+using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Repository;
+using selling_used_items_app_backend.UOW;
 
 namespace selling_used_items_app_backend.Service
 {
@@ -11,7 +13,8 @@ namespace selling_used_items_app_backend.Service
 
         public AdvertisementService(IAdvertisementRepository advertisementRepository)
         {
-            _advertisementRepository = advertisementRepository ?? throw new ArgumentNullException(nameof(advertisementRepository));
+            _advertisementRepository = advertisementRepository;
+
         }
 
         public IEnumerable<Advertisement> GetAll()

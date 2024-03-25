@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using selling_used_items_app_backend.Enum;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
+using selling_used_items_app_backend.UOW;
 using selling_used_items_app_backend.Validator.AdvertisementValidator;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,14 +15,18 @@ namespace selling_used_items_app_backend.Controllers
         private readonly IAdvertisementService _advertisementService;
         private readonly AdvertisementCreateValidator _advertisementCreateValidator;
         private readonly AdvertisementUpdateValidator _advertisementUpdateValidator;
-        private readonly AdvertisementDeleteValidator _advertisementDeleteValidator;
+        private readonly AdvertisementDeleteValidator _advertisementDeleteValidator; 
+        private readonly IPurchaseService _purchaseService;
+        private readonly ApplicationDbContext _dbContext;
 
-        public AdvertisementController(IAdvertisementService advertisementService, AdvertisementCreateValidator advertisementCreateValidator, AdvertisementUpdateValidator advertisementUpdateValidator, AdvertisementDeleteValidator advertisementDeleteValidator)
+        public AdvertisementController(ApplicationDbContext dbContext, IPurchaseService purchaseService, IAdvertisementService advertisementService, AdvertisementCreateValidator advertisementCreateValidator, AdvertisementUpdateValidator advertisementUpdateValidator, AdvertisementDeleteValidator advertisementDeleteValidator)
         {
             _advertisementService = advertisementService;
             _advertisementCreateValidator = advertisementCreateValidator;
             _advertisementUpdateValidator = advertisementUpdateValidator;
             _advertisementDeleteValidator = advertisementDeleteValidator;
+            _purchaseService = purchaseService;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
@@ -49,6 +55,7 @@ namespace selling_used_items_app_backend.Controllers
             {
                 return BadRequest(validationResult.ErrorMessage);
             }
+            Console.WriteLine(advertisement);
             _advertisementService.Create(advertisement);
             return CreatedAtAction(nameof(Get), new { id = advertisement.id }, advertisement);
         }
@@ -86,6 +93,44 @@ namespace selling_used_items_app_backend.Controllers
         {
             var advertisements = _advertisementService.Search(name, firstLetter, startPrice, endPrice);
             return Ok(advertisements);
+        }
+
+        [HttpPut("{id}/sell")]
+        public IActionResult Sell(int advertisementId)
+        {
+            using (var unitOfWork = new UnitOfWork(_dbContext))
+            {
+                try
+                {
+                    unitOfWork.BeginTransaction();
+
+                    var advertisement = _advertisementService.Get(advertisementId);
+
+                    if (advertisement == null)
+                    {
+                        return NotFound("Advertisement with the provided ID does not exist.");
+                    }
+
+                    advertisement.advertisementStatus = AdvertisementStatus.Sold;
+
+                    var purchase = new Purchase
+                    {
+                        advertisementId = advertisementId,
+                        userId = advertisement.userId,
+                    };
+
+                    _advertisementService.Update(advertisement);
+                    _purchaseService.Create(purchase);
+
+                    unitOfWork.SaveChanges();
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    unitOfWork.RollbackTransaction();
+                    return StatusCode(500, "Error: " + ex.Message);
+                }
+            }
         }
     }
 }
