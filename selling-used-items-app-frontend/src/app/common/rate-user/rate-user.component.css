@@ -1,0 +1,80 @@
+
+
+.container {
+    width: 20%; /* Smanjili smo širinu kontejnera na 40% */
+    margin: 0 auto; /* Centrirali smo kontejner */
+    background-color: #fff;
+    padding: 15px; /* Smanjili smo padding kontejnera */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px; /* Smanjili smo margin između grupa formi */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 6px; /* Smanjili smo padding za tekstualna polja */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Smanjili smo veličinu fonta za tekstualna polja */
+    box-sizing: border-box; /* Dodali smo box-sizing za tačno izračunavanje širine */
+}
+
+textarea {
+    resize: vertical;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    display: inline-block;
+    cursor: pointer;
+    width: 20px; /* Smanjili smo širinu zvezdice */
+    height: 20px; /* Smanjili smo visinu zvezdice */
+    background-image: url('../../../assets/star.png');
+    background-size: cover;
+}
+
+.rating input:checked + label {
+    background-image: url('../../../assets/star-filled.png');
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 8px; /* Smanjili smo padding za dugme */
+    border: none;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    color: white;
+    font-size: 14px; /* Smanjili smo veličinu fonta za dugme */
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #3e8e41;
+}
+
+.yellow {
+    background-image: url('../../../assets/star-filled.png') !important;
+}

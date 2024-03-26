@@ -18,6 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
 import { ReportUserComponent } from './registered-user/report-user/report-user.component';
 import { AllUsersComponent } from './administrator/all-users/all-users.component';
+import { MyPurchaseComponent } from './common/my-purchase/my-purchase.component';
+import { RateUserComponent } from './common/rate-user/rate-user.component';
+import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { AllUsersComponent } from './administrator/all-users/all-users.component
     EditAdvertisementComponent,
     ReportUserComponent,
     AllUsersComponent,
+    MyPurchaseComponent,
+    RateUserComponent,
+    AcceptDeclineCommentComponent,
   ],
   imports: [
     BrowserModule,

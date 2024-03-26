@@ -140,3 +140,51 @@ width: 20px; /* Podesi širinu ikonice */
 height: 20px; /* Podesi visinu ikonice */
 background-size: contain;
 }
+
+.rateUser {
+position: absolute;
+left: 1550px; /* Pomeramo dugme "reportUser" za 45px (širina dugmeta "profile" + 35px razmaka) */
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 25px;
+background: url('../../assets/rating.png') no-repeat center; /* Dodaj putanju do ikonice za "reportUser" */
+background-size: contain;
+border: none;
+cursor: pointer;
+}
+
+.rateUserIcon {
+width: 20px; /* Podesi širinu ikonice */
+height: 20px; /* Podesi visinu ikonice */
+background-size: contain;
+}
+
+
+.reportUserIcon {
+width: 20px; /* Podesi širinu ikonice */
+height: 20px; /* Podesi visinu ikonice */
+background-size: contain;
+}
+
+.approveComment {
+position: absolute;
+left: 1515px; /* Pomeramo dugme "reportUser" za 45px (širina dugmeta "profile" + 35px razmaka) */
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+height: 25px;
+background: url('../../assets/comment.png') no-repeat center; /* Dodaj putanju do ikonice za "reportUser" */
+background-size: contain;
+border: none;
+cursor: pointer;
+}
+
+.approveCommentIcon {
+width: 20px; /* Podesi širinu ikonice */
+height: 20px; /* Podesi visinu ikonice */
+background-size: contain;
+}
+
+
+

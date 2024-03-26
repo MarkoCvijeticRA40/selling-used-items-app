@@ -15,6 +15,9 @@ import { CreateAdvertisementComponent } from './common/create-advertisement/crea
 import { EditAdvertisementComponent } from './common/edit-advertisement/edit-advertisement.component';
 import { ReportUserComponent } from './registered-user/report-user/report-user.component';
 import { AllUsersComponent } from './administrator/all-users/all-users.component';
+import { MyPurchaseComponent } from './common/my-purchase/my-purchase.component';
+import { RateUserComponent } from './common/rate-user/rate-user.component';
+import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
 
 const routes: Routes = [
   { 
@@ -33,14 +36,17 @@ const routes: Routes = [
           { path: 'create-advertisement', component: CreateAdvertisementComponent}, 
           { path: 'edit-advertisement', component: EditAdvertisementComponent},
           { path: 'report-user', component: ReportUserComponent},
+          { path: 'add-comment', component: RateUserComponent},
+          { path: 'comments', component: AcceptDeclineCommentComponent},
           { path: 'profile', component: ProfileComponent,
           children: [
             { path: 'edit-profile', component: EditProfileComponent },
             { path: 'my-advertisements', component: MyAdvertisementComponent},
-            { path: 'all-users', component: AllUsersComponent}
+            { path: 'my-purchases', component: MyPurchaseComponent},
+            { path: 'all-users', component: AllUsersComponent},
+            { path: 'change-password', component: ChangePasswordComponent},
           ] 
         },
-        { path: 'change-password', component: ChangePasswordComponent},
         ]
       }
     ]
