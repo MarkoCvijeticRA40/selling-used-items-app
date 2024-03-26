@@ -20,6 +20,7 @@ import { ReportUserComponent } from './registered-user/report-user/report-user.c
 import { AllUsersComponent } from './administrator/all-users/all-users.component';
 import { MyPurchaseComponent } from './common/my-purchase/my-purchase.component';
 import { RateUserComponent } from './common/rate-user/rate-user.component';
+import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RateUserComponent } from './common/rate-user/rate-user.component';
     AllUsersComponent,
     MyPurchaseComponent,
     RateUserComponent,
+    AcceptDeclineCommentComponent,
   ],
   imports: [
     BrowserModule,

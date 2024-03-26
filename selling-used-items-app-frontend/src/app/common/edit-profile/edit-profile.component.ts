@@ -11,7 +11,7 @@ export class EditProfileComponent {
   constructor(private router: Router) { }
 
   redirectToChangePassword(): void {
-    this.router.navigate(['/home/change-password']);
+    this.router.navigate(['/home/profile/change-password']);
   }
 
 }

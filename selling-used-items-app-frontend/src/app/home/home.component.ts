@@ -36,6 +36,11 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToRateUser() {
-    this.router.navigate(['/home/rate-user']);
+    alert("asdasd");
+    this.router.navigate(['/home/add-comment']);
+  }
+
+  navigateToComments() {
+    this.router.navigate(['/home/comments']);
   }
 }

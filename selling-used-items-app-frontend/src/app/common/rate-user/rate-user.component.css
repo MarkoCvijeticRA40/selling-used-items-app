@@ -1,10 +1,7 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
+
 
 .container {
-    width: 40%; /* Smanjili smo širinu kontejnera na 40% */
+    width: 20%; /* Smanjili smo širinu kontejnera na 40% */
     margin: 0 auto; /* Centrirali smo kontejner */
     background-color: #fff;
     padding: 15px; /* Smanjili smo padding kontejnera */
