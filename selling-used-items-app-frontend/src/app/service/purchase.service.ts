@@ -8,7 +8,7 @@ import { Purchase } from '../model/purchase';
 })
 export class PurchaseService {
 
-  private baseUrl = 'http://localhost:5112/api/purchases';
+  private baseUrl = 'http://localhost:5152/api/purchases';
 
   constructor(private http: HttpClient) { }
 

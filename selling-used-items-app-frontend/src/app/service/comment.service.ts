@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CommentService {
 
-  private baseUrl = 'http://localhost:5112/api/comments'; // URL tvog backend-a
+  private baseUrl = 'http://localhost:5152/api/comments'; // URL tvog backend-a
 
   constructor(private http: HttpClient) { }
 

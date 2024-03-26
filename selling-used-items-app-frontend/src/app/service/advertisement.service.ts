@@ -8,7 +8,7 @@ import { Advertisement } from '../model/advertisement';
 })
 export class AdvertisementService {
 
-  private baseUrl = 'http://localhost:5112/api/advertisements';
+  private baseUrl = 'http://localhost:5152/api/advertisements';
 
   constructor(private http: HttpClient) { }
 

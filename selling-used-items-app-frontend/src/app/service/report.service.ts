@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ReportService {
 
-  private baseUrl = 'http://localhost:5112/api/reports'; // URL tvog backend-a
+  private baseUrl = 'http://localhost:5152/api/reports'; // URL tvog backend-a
 
   constructor(private http: HttpClient) { }
 
