@@ -20,4 +20,16 @@ export class MyAdvertisementComponent {
     this.router.navigate(['/home/edit-advertisement']);
   }
 
+  shouldShowEditDelete(): boolean {
+    return this.advertisements.some(ad => ad.status === 'Available');
+  }
+
+  shouldShowConfirmRefuse(): boolean {
+    return this.advertisements.some(ad => ad.status === 'Reserved');
+  }
+
+  shouldShowActions(): boolean {
+    return this.shouldShowEditDelete() || this.shouldShowConfirmRefuse();
+  }
+
 }

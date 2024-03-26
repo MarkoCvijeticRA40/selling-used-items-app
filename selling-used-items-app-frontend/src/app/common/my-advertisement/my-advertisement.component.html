@@ -1,13 +1,16 @@
 <div class="container">
     <table id="advertisementTable" class="advertisementTable">
         <thead>
-            <tr>
+            <tr *ngIf="shouldShowActions()">
                 <th>Name</th>
                 <th>Price</th>
                 <th>Description</th>
                 <th>Status</th>
-                <th>Edit</th> 
-                <th>Delete</th>
+                <th *ngIf="shouldShowEditDelete()">Edit</th> 
+                <th *ngIf="shouldShowEditDelete()">Delete</th>
+                <th *ngIf="shouldShowConfirmRefuse()">Confirm</th>
+                <th *ngIf="shouldShowConfirmRefuse()">Refuse</th>
+                <th>Reserved by</th>
             </tr>
         </thead>
         <tbody>
@@ -16,12 +19,19 @@
                 <td>{{ ad.price }}</td>
                 <td>{{ ad.description }}</td>
                 <td>{{ ad.status }}</td>
-                <td>
+                <td *ngIf="shouldShowEditDelete()">
                     <button *ngIf="ad.status === 'Available'" class="edit-button" (click)="navigateToAdvertisements()">Edit</button>
                 </td>
-                <td>
+                <td *ngIf="shouldShowEditDelete()">
                     <button *ngIf="ad.status === 'Available'" class="delete-button">Delete</button>
                 </td>
+                <td *ngIf="shouldShowConfirmRefuse()">
+                    <button *ngIf="ad.status === 'Reserved'" class="edit-button">Confirm</button>
+                </td>
+                <td *ngIf="shouldShowConfirmRefuse()">
+                    <button *ngIf="ad.status === 'Reserved'" class="delete-button">Refuse</button>
+                </td>
+                <td>Milos Tomic</td>
             </tr>
         </tbody> 
     </table>
