@@ -34,4 +34,8 @@ export class HomeComponent implements OnInit {
   navigateToReportUser() {
     this.router.navigate(['/home/report-user']);
   }
+
+  navigateToRateUser() {
+    this.router.navigate(['/home/rate-user']);
+  }
 }

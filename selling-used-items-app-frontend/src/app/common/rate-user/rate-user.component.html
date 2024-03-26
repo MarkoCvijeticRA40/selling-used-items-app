@@ -1,1 +1,24 @@
-<p>rate-user works!</p>
+<div class="container">
+    <h2>Add comment</h2>
+    <form id="rateForm" (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="purchaseId">Purchase ID:</label>
+            <input type="text" id="purchaseId" name="purchaseId" required>
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" cols="30" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="rating">Rate User:</label>
+            <div class="rating" id="rating">
+                <input type="checkbox" id="star5" name="rating" value="5"><label for="star5"></label>
+                <input type="checkbox" id="star4" name="rating" value="4"><label for="star4"></label>
+                <input type="checkbox" id="star3" name="rating" value="3"><label for="star3"></label>
+                <input type="checkbox" id="star2" name="rating" value="2"><label for="star2"></label>
+                <input type="checkbox" id="star1" name="rating" value="1"><label for="star1"></label>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>

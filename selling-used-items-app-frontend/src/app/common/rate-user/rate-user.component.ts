@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RateUserComponent {
 
+  onSubmit() {
+    const checkedStars = document.querySelectorAll('input[name="rating"]:checked').length;
+    console.log(`Number of yellow stars: ${checkedStars}`);
+}
 }

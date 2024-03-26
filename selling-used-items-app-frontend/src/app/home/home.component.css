@@ -140,3 +140,22 @@ width: 20px; /* Podesi širinu ikonice */
 height: 20px; /* Podesi visinu ikonice */
 background-size: contain;
 }
+
+.rateUser {
+    position: absolute;
+    left: 1550px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 25px;
+    background: url('../../assets/rating.png') no-repeat center; 
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.rateUserIcon {
+    width: 20px; /* Podesi širinu ikonice */
+    height: 20px; /* Podesi visinu ikonice */
+    background-size: contain;
+}
