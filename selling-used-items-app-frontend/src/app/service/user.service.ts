@@ -41,7 +41,10 @@ export class UserService {
   }
  
   forgotPassword(email: string): Observable<void> {
-    
     return this.http.patch<void>(`http://localhost:5152/api/users/forgot-password?email=${email}`, { headers: this.headers });
+  }  
+
+  changePassword(user: User): Observable<void> {
+    return this.http.put<void>(`http://localhost:5152/api/users/change-password/${user.id}`, user, { headers: this.headers });
   }  
 }

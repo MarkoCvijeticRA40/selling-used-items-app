@@ -13,5 +13,6 @@ namespace selling_used_items_app_backend.Service
         string GenerateRandomPassword(int length);
         public string HashPassword(string password);
         public string GetUserEmailById(int userId);
+        void ChangePassword(User user);
     }
 }
