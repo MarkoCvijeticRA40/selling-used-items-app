@@ -177,7 +177,7 @@ namespace selling_used_items_app_backend.Controllers
             }
         }
 
-        [HttpPatch("{id}/block")]
+        [HttpPatch("block/{id}")]
         public IActionResult BlockUser(int id)
         {
             var user = _userService.Get(id);
@@ -198,7 +198,7 @@ namespace selling_used_items_app_backend.Controllers
             return Ok($"User with ID {id} has been blocked.");
         }
 
-        [HttpPatch("{id}/unblock")]
+        [HttpPatch("unblock/{id}")]
         public IActionResult UnblockUser(int id)
         {
             var user = _userService.Get(id);
