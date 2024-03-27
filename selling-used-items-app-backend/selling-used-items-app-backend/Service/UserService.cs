@@ -36,9 +36,16 @@ namespace selling_used_items_app_backend.Service
 
         public void Update(User user)
         {
-            if (user == null)
+            if (user == null) {
                 throw new ArgumentNullException(nameof(user));
+            }
+            _userRepository.Update(user);
+        }
 
+        public void ChangePassword(User user) {
+            String newPassword = user.password;
+            user.password = HashPassword(newPassword);
+            Console.WriteLine("Current password: " + user.password);
             _userRepository.Update(user);
         }
 

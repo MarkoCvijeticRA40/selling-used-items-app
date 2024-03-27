@@ -67,6 +67,17 @@ namespace selling_used_items_app_backend.Controllers
             return NoContent();
         }
 
+        [HttpPut("change-password/{id}")]
+        public IActionResult ChangePassword(int id, User user)
+        {
+            if (id != user.id)
+            {
+                return BadRequest("ID in the request path does not match the ID in the request body.");
+            }
+            _userService.ChangePassword(user);
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
