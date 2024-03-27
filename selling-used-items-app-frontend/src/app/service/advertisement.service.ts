@@ -33,8 +33,11 @@ export class AdvertisementService {
     return this.http.delete<void>(`${this.route}/${advertisementId}`, { headers: this.headers });
   }
 
-  search(name: string, firstLetter: string): Observable<any> {
-    return this.http.get<any>(`${this.route}/search?name=${name}&firstLetter=${firstLetter}`, { headers: this.headers });
+  search(name: string, firstLetter: string, sortBy: string): Observable<any> {
+    //return this.http.get<any>(`${this.route}/search?name=${name}&firstLetter=${firstLetter}&sortBy=${sortBy}`, { headers: this.headers });
+    const url = `${this.route}/search?name=${name}&firstLetter=${firstLetter}&sortBy=${sortBy}`;
+    console.log('Target URL:', url); 
+    return this.http.get<any>(url, { headers: this.headers });
   }
 
   sell(advertisementId: number): Observable<void> {

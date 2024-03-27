@@ -31,12 +31,12 @@
     </div>
 
     <div class="sortContainer">
-        <select id="priceSort" class="sortSelect">
-            <option value="asc">Sort by</option>
-            <option value="asc">Sort by ASC price</option>
-            <option value="desc">Sort by DESC price</option>
-            <option value="asc">Sort by ASC name</option>
-            <option value="desc">Sort by DESC name</option>
+        <select id="priceSort" class="sortSelect" [(ngModel)]="sortBy" (change)="onSortChange(this.sortBy)">
+            <option value="">Sort by</option>
+            <option value="PriceASC">Sort by ASC price</option>
+            <option value="PriceDESC">Sort by DESC price</option>
+            <option value="NameASC">Sort by ASC name</option>
+            <option value="NameDESC">Sort by DESC name</option>
         </select>
     </div>
     <table id="advertisementTable" class="advertisementTable">
