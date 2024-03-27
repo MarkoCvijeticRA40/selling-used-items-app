@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdvertisementService } from '../../service/advertisement.service';
 import { catchError, of } from 'rxjs';
+import { Advertisement } from '../../model/advertisement';
+import { error } from 'console';
 
 
 @Component({
@@ -18,6 +20,17 @@ export class AllAdvertisementsComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService: AdvertisementService) {
 
+  }
+
+  deleteAdvertisement(advertisementId: number) {
+    this.advertisementService.delete(advertisementId).pipe(
+      catchError((error) => {
+        return of([]);
+      })
+    ).subscribe(res => {
+      alert("Succesfully delete advertisement!");
+      this.advertisements = this.fetchAdvertisements();
+    })
   }
   
   ngOnInit(): void {
