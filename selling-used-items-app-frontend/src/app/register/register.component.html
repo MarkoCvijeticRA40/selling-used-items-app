@@ -5,21 +5,21 @@
     </div>
 
     <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
+    <input type="text" placeholder="Enter Name" name="name" required [(ngModel)]="user.name">
 
     <label for="lastname"><b>Lastname</b></label>
-    <input type="text" placeholder="Enter Lastname" name="lastname" required>
+    <input type="text" placeholder="Enter Lastname" name="lastname" required [(ngModel)]="user.lastName">
 
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" name="username" required [(ngModel)]="user.username">
 
     <label for="email"><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
+    <input type="email" placeholder="Enter Email" name="email" required [(ngModel)]="user.email">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="user.password">
       
-    <button type="submit">Register</button>
+    <button type="button" (click)="register()">Register</button>
   </form>
   <button type="button" class="back-button" (click)="navigateToLogin()">Back</button>
 </div>

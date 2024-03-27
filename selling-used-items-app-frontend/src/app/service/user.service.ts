@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
@@ -8,40 +8,35 @@ import { User } from '../model/user';
 })
 export class UserService {
 
-  private baseUrl = 'http://localhost:5152/api/users';
+  private readonly headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:5152/api/users', { headers: this.headers });
   }
 
-  getUserById(userId: number): Observable<User> {
-    const url = `${this.baseUrl}/${userId}`;
-    return this.http.get<User>(url);
+  get(userId: number): Observable<User> {
+    return this.http.get<User>('http://localhost:5152/api/users/' + userId, { headers: this.headers });
   }
 
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl, user);
+  create(user: User): Observable<User> {
+    return this.http.post<User>('http://localhost:5152/api/users/register', user, { headers: this.headers });
   }
 
-  updateUser(user: User): Observable<User> {
-    const url = `${this.baseUrl}/${user.id}`;
-    return this.http.put<User>(url, user);
+  update(user: User): Observable<User> {
+    return this.http.put<User>('http://localhost:5152/api/users/' + user.id, user, { headers: this.headers });
   }
 
-  deleteUser(userId: number): Observable<void> {
-    const url = `${this.baseUrl}/${userId}`;
-    return this.http.delete<void>(url);
+  delete(userId: number): Observable<void> {
+    return this.http.delete<void>('http://localhost:5152/api/users/' + userId, { headers: this.headers });
   }
 
-  blockUser(userId: number): Observable<void> {
-    const url = `${this.baseUrl}/block/${userId}`;
-    return this.http.put<void>(url, null);
+  block(userId: number): Observable<void> {
+    return this.http.put<void>('http://localhost:5152/api/users/block/' + userId, null, { headers: this.headers });
   }
 
-  unblockUser(userId: number): Observable<void> {
-    const url = `${this.baseUrl}/unblock/${userId}`;
-    return this.http.put<void>(url, null);
+  unblock(userId: number): Observable<void> {
+    return this.http.put<void>('http://localhost:5152/api/users/unblock/' + userId, null, { headers: this.headers });
   }
 }

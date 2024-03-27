@@ -111,7 +111,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
        [HttpPost("register")]
-        public async Task<IActionResult> Create(User user)
+        public IActionResult Create(User user)
         {       
             using (var unitOfWork = new UnitOfWork(_dbContext))
             {
@@ -124,11 +124,9 @@ namespace selling_used_items_app_backend.Controllers
                 try
                 {
                     unitOfWork.BeginTransaction();
-                    
                     user.password = _userService.HashPassword(user.password);
-                    
                     _userService.Create(user);
-                    await _emailService.SendEmailAsync(user.email, "Welcome to our application!", "Thank you for registration!");
+                    _emailService.SendEmailAsync(user.email, "Welcome to our application!", "Thank you for registration!");
                     unitOfWork.CommitTransaction();
                     return CreatedAtAction(nameof(Get), new { id = user.id }, user);
                 }

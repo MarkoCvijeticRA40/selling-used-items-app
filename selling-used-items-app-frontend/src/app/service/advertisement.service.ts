@@ -34,10 +34,7 @@ export class AdvertisementService {
   }
 
   search(name: string, firstLetter: string, sortBy: string): Observable<any> {
-    //return this.http.get<any>(`${this.route}/search?name=${name}&firstLetter=${firstLetter}&sortBy=${sortBy}`, { headers: this.headers });
-    const url = `${this.route}/search?name=${name}&firstLetter=${firstLetter}&sortBy=${sortBy}`;
-    console.log('Target URL:', url); 
-    return this.http.get<any>(url, { headers: this.headers });
+    return this.http.get<any>(`${this.route}/search?name=${name}&firstLetter=${firstLetter}&sortBy=${sortBy}`, { headers: this.headers });
   }
 
   sell(advertisementId: number): Observable<void> {
