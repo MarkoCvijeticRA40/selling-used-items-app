@@ -29,7 +29,7 @@ export class AllAdvertisementsComponent implements OnInit {
 
   fetchAdvertisements() {
     if (this.name || this.firstLetter || this.sortBy) {
-      this.advertisementService.search(this.name, this.firstLetter, this.sortBy).pipe(
+      this.advertisementService.search(this.name || '', this.firstLetter || '', this.sortBy || '').pipe(
         catchError((error) => {
           console.error('Error fetching advertisements:', error);
           return of([]);

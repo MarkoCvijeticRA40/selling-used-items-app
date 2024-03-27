@@ -89,7 +89,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult<IEnumerable<Advertisement>> Search(string name, char? firstLetter, string sortBy)
+        public ActionResult<IEnumerable<Advertisement>> Search(string name = null, char? firstLetter = null, string sortBy = null)
         {
             var advertisements = _advertisementService.Search(name, firstLetter, sortBy);
             return Ok(advertisements);

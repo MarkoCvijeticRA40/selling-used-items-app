@@ -39,4 +39,9 @@ export class UserService {
   unblock(userId: number): Observable<void> {
     return this.http.put<void>('http://localhost:5152/api/users/unblock/' + userId, null, { headers: this.headers });
   }
+ 
+  forgotPassword(email: string): Observable<void> {
+    
+    return this.http.patch<void>(`http://localhost:5152/api/users/forgot-password?email=${email}`, { headers: this.headers });
+  }  
 }

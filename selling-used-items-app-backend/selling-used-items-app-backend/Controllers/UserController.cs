@@ -139,7 +139,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpPatch("forgot-password")]
-        public async Task<IActionResult> ForgotPassword(string email)
+        public IActionResult ForgotPassword(string email)
         {
             try
             {
@@ -156,7 +156,7 @@ namespace selling_used_items_app_backend.Controllers
                 user.password = _userService.HashPassword(newPassword);
                 _userService.Update(user);
 
-                await _emailService.SendEmailAsync(email, "Your New Password", $"Your new password is: {newPassword}");
+                _emailService.SendEmailAsync(email, "Your New Password", $"Your new password is: {newPassword}");
 
                 return Ok("If the email address exists in our records, we have sent an email with instructions to reset your password.");
             }
