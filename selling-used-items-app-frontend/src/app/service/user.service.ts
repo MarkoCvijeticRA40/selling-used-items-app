@@ -33,11 +33,11 @@ export class UserService {
   }
 
   block(userId: number): Observable<void> {
-    return this.http.put<void>('http://localhost:5152/api/users/block/' + userId, null, { headers: this.headers });
+    return this.http.patch<void>('http://localhost:5152/api/users/block/' + userId, { headers: this.headers });
   }
 
   unblock(userId: number): Observable<void> {
-    return this.http.put<void>('http://localhost:5152/api/users/unblock/' + userId, null, { headers: this.headers });
+    return this.http.patch<void>('http://localhost:5152/api/users/unblock/' + userId, { headers: this.headers });
   }
  
   forgotPassword(email: string): Observable<void> {
