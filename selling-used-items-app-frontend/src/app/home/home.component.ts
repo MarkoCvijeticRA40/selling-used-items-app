@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +7,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+
+  name: string = "";
+  advertisements: any[] = [];
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['name']) {
+        this.name = params['name'];
+      }
+    });
+  }
 
+  onSearchChange() {
+    const url = this.name ? `/home/advertisements?name=${this.name}` : '/home/advertisements';
+    this.router.navigateByUrl(url);
   }
 
   navigateToLogin() {

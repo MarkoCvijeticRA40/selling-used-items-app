@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Advertisement } from '../model/advertisement';
@@ -8,40 +8,36 @@ import { Advertisement } from '../model/advertisement';
 })
 export class AdvertisementService {
 
-  private baseUrl = 'http://localhost:5152/api/advertisements';
+  route: string = 'http://localhost:5152/api/advertisements';
+  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
-  getAllAdvertisements(): Observable<Advertisement[]> {
-    return this.http.get<Advertisement[]>(this.baseUrl);
+  getAll(): Observable<Advertisement[]> {
+    return this.http.get<Advertisement[]>(this.route, { headers: this.headers });
   }
 
-  getAdvertisementById(advertisementId: number): Observable<Advertisement> {
-    const url = `${this.baseUrl}/${advertisementId}`;
-    return this.http.get<Advertisement>(url);
+  get(advertisementId: number): Observable<Advertisement> {
+    return this.http.get<Advertisement>(`${this.route}/${advertisementId}`, { headers: this.headers });
   }
 
-  createAdvertisement(advertisement: Advertisement): Observable<Advertisement> {
-    return this.http.post<Advertisement>(this.baseUrl, advertisement);
+  create(advertisement: Advertisement): Observable<Advertisement> {
+    return this.http.post<Advertisement>(this.route, advertisement, { headers: this.headers });
   }
 
-  updateAdvertisement(advertisementId: number, advertisement: Advertisement): Observable<void> {
-    const url = `${this.baseUrl}/${advertisementId}`;
-    return this.http.put<void>(url, advertisement);
+  update(advertisementId: number, advertisement: Advertisement): Observable<void> {
+    return this.http.put<void>(`${this.route}/${advertisementId}`, advertisement, { headers: this.headers });
   }
 
-  deleteAdvertisement(advertisementId: number): Observable<void> {
-    const url = `${this.baseUrl}/${advertisementId}`;
-    return this.http.delete<void>(url);
+  delete(advertisementId: number): Observable<void> {
+    return this.http.delete<void>(`${this.route}/${advertisementId}`, { headers: this.headers });
   }
 
-  searchAdvertisements(params: any): Observable<Advertisement[]> {
-    const url = `${this.baseUrl}/search`;
-    return this.http.get<Advertisement[]>(url, { params });
+  search(name: string): Observable<any> {
+    return this.http.get<any>(`${this.route}/search?name=${name}`, { headers: this.headers });
   }
 
-  sellAdvertisement(advertisementId: number): Observable<void> {
-    const url = `${this.baseUrl}/${advertisementId}/sell`;
-    return this.http.put<void>(url, null);
+  sell(advertisementId: number): Observable<void> {
+    return this.http.put<void>(`${this.route}/${advertisementId}/sell`, null, { headers: this.headers });
   }
 }

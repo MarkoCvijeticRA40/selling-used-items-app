@@ -1,9 +1,10 @@
 <div class="header">
     <img src="./assets/logo1.png" alt="Logo" class="logo">
     <div class="search" style="position: relative;">
-        <input type="text" id="searchInput" placeholder="Search..." class="searchInput">
+        <input type="text" id="searchInput" placeholder="Search..." class="searchInput" (input)="onSearchChange()" [(ngModel)]=name>
         <span class="searchIcon"></span>
     </div>
+
     <div class="addAdvertisement">
         <button (click)="navigateToCreateAdvertisement()">
             <span class="icon">+</span> Add Advertisement

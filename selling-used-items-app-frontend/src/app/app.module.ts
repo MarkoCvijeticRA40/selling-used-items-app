@@ -21,6 +21,8 @@ import { AllUsersComponent } from './administrator/all-users/all-users.component
 import { MyPurchaseComponent } from './common/my-purchase/my-purchase.component';
 import { RateUserComponent } from './common/rate-user/rate-user.component';
 import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
+import { FormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { AcceptDeclineCommentComponent } from './administrator/accept-decline-co
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
