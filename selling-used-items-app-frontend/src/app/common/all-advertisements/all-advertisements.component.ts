@@ -13,9 +13,11 @@ export class AllAdvertisementsComponent implements OnInit {
  
   advertisements: any = [];
   name: string = '';
+  firstLetter: string = '';
+
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService: AdvertisementService) {
-    
+
   }
   
   ngOnInit(): void {
@@ -26,8 +28,8 @@ export class AllAdvertisementsComponent implements OnInit {
   }
 
   fetchAdvertisements() {
-    if (this.name) {
-      this.advertisementService.search(this.name).pipe(
+    if (this.name || this.firstLetter) {
+      this.advertisementService.search(this.name, this.firstLetter).pipe(
         catchError((error) => {
           console.error('Error fetching advertisements:', error);
           return of([]);
@@ -47,6 +49,23 @@ export class AllAdvertisementsComponent implements OnInit {
     }
   }
 
+  onAlphabetClick(letter: string) {
+    if (this.firstLetter === letter) {
+        this.firstLetter = '';
+    } else {
+        this.firstLetter = letter;
+    }
+    const currentUrlTree = this.router.parseUrl(this.router.url);
+    const currentParams = { ...currentUrlTree.queryParams };
+    currentParams['first_letter'] = this.firstLetter || null;
+    this.router.navigate([], {
+        queryParams: currentParams,
+        queryParamsHandling: 'merge',
+    }).then(() => {
+        this.fetchAdvertisements();
+    });
+  } 
+  
   navigateToAdvertisementDisplay(): void {
     this.router.navigate(['/home/advertisement']);
   }

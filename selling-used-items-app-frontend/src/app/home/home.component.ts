@@ -22,10 +22,20 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchChange() {
-    const url = this.name ? `/home/advertisements?name=${this.name}` : '/home/advertisements';
+    let queryParams: any = {};
+    if (this.name) {
+      queryParams['name'] = this.name;
+    }
+    const currentUrlTree = this.router.parseUrl(this.router.url);
+    const currentParams = { ...currentUrlTree.queryParams, ...queryParams };
+    if (!this.name) {
+      delete currentParams['name'];
+    }
+    const queryString = Object.keys(currentParams).map(key => `${key}=${currentParams[key]}`).join('&');
+    const url = '/home/advertisements' + (queryString ? `?${queryString}` : '');
     this.router.navigateByUrl(url);
   }
-
+  
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
