@@ -9,7 +9,7 @@ namespace selling_used_items_app_backend.Service
         void Create(Advertisement advertisement);
         void Update(Advertisement advertisement);
         void Delete(int id);
-        IEnumerable<Advertisement> Search(string name, char? firstLetter, decimal? startPrice, decimal? endPrice);
+        IEnumerable<Advertisement> Search(string name, char? firstLetter, string sortBy);
         //void Sell(int advertisementId);
     }
 }

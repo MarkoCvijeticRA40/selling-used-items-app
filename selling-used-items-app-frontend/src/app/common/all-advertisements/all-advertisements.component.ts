@@ -14,7 +14,7 @@ export class AllAdvertisementsComponent implements OnInit {
   advertisements: any = [];
   name: string = '';
   firstLetter: string = '';
-
+  sortBy: string = '';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService: AdvertisementService) {
 
@@ -22,14 +22,14 @@ export class AllAdvertisementsComponent implements OnInit {
   
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-        this.name = params['name'];
+        this.name = params['name'] || '';
         this.fetchAdvertisements();
     });
   }
 
   fetchAdvertisements() {
-    if (this.name || this.firstLetter) {
-      this.advertisementService.search(this.name, this.firstLetter).pipe(
+    if (this.name || this.firstLetter || this.sortBy) {
+      this.advertisementService.search(this.name || '', this.firstLetter || '', this.sortBy || '').pipe(
         catchError((error) => {
           console.error('Error fetching advertisements:', error);
           return of([]);
@@ -65,6 +65,21 @@ export class AllAdvertisementsComponent implements OnInit {
         this.fetchAdvertisements();
     });
   } 
+
+  onSortChange(type: string) {
+    console.log(this.sortBy);
+    console.log(this.firstLetter);
+    this.sortBy = type;
+    const currentUrlTree = this.router.parseUrl(this.router.url);
+    const currentParams = { ...currentUrlTree.queryParams };
+    currentParams['sortBy'] = this.sortBy || null; 
+    this.router.navigate([], {
+        queryParams: currentParams,
+        queryParamsHandling: 'merge',
+    }).then(() => {
+        this.fetchAdvertisements();
+    });
+  }
   
   navigateToAdvertisementDisplay(): void {
     this.router.navigate(['/home/advertisement']);

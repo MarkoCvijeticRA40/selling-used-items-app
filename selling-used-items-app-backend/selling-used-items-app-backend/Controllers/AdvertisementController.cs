@@ -89,15 +89,9 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult<IEnumerable<Advertisement>> Search(string name = null, char? firstLetter = null, decimal? startPrice = null, decimal? endPrice = null)
+        public ActionResult<IEnumerable<Advertisement>> Search(string name = null, char? firstLetter = null, string sortBy = null)
         {
-            var advertisements = _advertisementService.Search(name, firstLetter, startPrice, endPrice);
-            Console.WriteLine("Search results:");
-            foreach (var ad in advertisements)
-            {
-                Console.WriteLine($"Id: {ad.id}, Name: {ad.name}, Price: {ad.price}, Description: {ad.description}");
-            }
-
+            var advertisements = _advertisementService.Search(name, firstLetter, sortBy);
             return Ok(advertisements);
         }
 

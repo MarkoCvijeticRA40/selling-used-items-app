@@ -111,7 +111,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
        [HttpPost("register")]
-        public async Task<IActionResult> Create(User user)
+        public IActionResult Create(User user)
         {       
             using (var unitOfWork = new UnitOfWork(_dbContext))
             {
@@ -124,11 +124,9 @@ namespace selling_used_items_app_backend.Controllers
                 try
                 {
                     unitOfWork.BeginTransaction();
-                    
                     user.password = _userService.HashPassword(user.password);
-                    
                     _userService.Create(user);
-                    await _emailService.SendEmailAsync(user.email, "Welcome to our application!", "Thank you for registration!");
+                    _emailService.SendEmailAsync(user.email, "Welcome to our application!", "Thank you for registration!");
                     unitOfWork.CommitTransaction();
                     return CreatedAtAction(nameof(Get), new { id = user.id }, user);
                 }
@@ -141,7 +139,7 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpPatch("forgot-password")]
-        public async Task<IActionResult> ForgotPassword(string email)
+        public IActionResult ForgotPassword(string email)
         {
             try
             {
@@ -158,7 +156,7 @@ namespace selling_used_items_app_backend.Controllers
                 user.password = _userService.HashPassword(newPassword);
                 _userService.Update(user);
 
-                await _emailService.SendEmailAsync(email, "Your New Password", $"Your new password is: {newPassword}");
+                _emailService.SendEmailAsync(email, "Your New Password", $"Your new password is: {newPassword}");
 
                 return Ok("If the email address exists in our records, we have sent an email with instructions to reset your password.");
             }

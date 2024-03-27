@@ -48,7 +48,7 @@ namespace selling_used_items_app_backend.Service
             _advertisementRepository.Delete(id);
         }
 
-        public IEnumerable<Advertisement> Search(string name, char? firstLetter, decimal? startPrice, decimal? endPrice)
+        public IEnumerable<Advertisement> Search(string name, char? firstLetter, string sortBy)
         {
             var advertisements = _advertisementRepository.GetAll();
 
@@ -62,18 +62,24 @@ namespace selling_used_items_app_backend.Service
                 advertisements = advertisements.Where(advertisement => advertisement.name.StartsWith(firstLetter.ToString(), StringComparison.OrdinalIgnoreCase));
             }
 
-            if (startPrice != null)
-            {
-                advertisements = advertisements.Where(advertisement => advertisement.price >= startPrice);
+            if(!string.IsNullOrWhiteSpace(sortBy)) 
+            {   
+                if(sortBy.Equals("PriceASC")) {
+                    advertisements = advertisements.OrderBy(advertisement => advertisement.price);
+                }
+
+                if(sortBy.Equals("PriceDESC")) {
+                    advertisements = advertisements.OrderByDescending(advertisement => advertisement.price);
+                }
+
+                if(sortBy.Equals("NameASC")) {
+                    advertisements = advertisements.OrderBy(advertisement => advertisement.name);
+                }
+
+                if(sortBy.Equals("NameDESC")) {
+                    advertisements = advertisements.OrderByDescending(advertisement => advertisement.name);
+                }
             }
-
-            if (endPrice != null)
-            {
-                advertisements = advertisements.Where(advertisement => advertisement.price <= endPrice);
-            }
-
-            advertisements = advertisements.OrderBy(advertisement => advertisement.price);
-
             return advertisements;
         }
     }
