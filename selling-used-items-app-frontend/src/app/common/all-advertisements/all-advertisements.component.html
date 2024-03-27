@@ -2,32 +2,32 @@
 <div class="container">
 
     <div class="alphabetContainer">
-        <div class="alphabetFilter">A</div>
-        <div class="alphabetFilter">B</div>
-        <div class="alphabetFilter">C</div>
-        <div class="alphabetFilter">D</div>
-        <div class="alphabetFilter">E</div>
-        <div class="alphabetFilter">F</div>
-        <div class="alphabetFilter">G</div>
-        <div class="alphabetFilter">H</div>
-        <div class="alphabetFilter">I</div>
-        <div class="alphabetFilter">J</div>
-        <div class="alphabetFilter">K</div>
-        <div class="alphabetFilter">L</div>
-        <div class="alphabetFilter">M</div>
-        <div class="alphabetFilter">N</div>
-        <div class="alphabetFilter">O</div>
-        <div class="alphabetFilter">P</div>
-        <div class="alphabetFilter">Q</div>
-        <div class="alphabetFilter">R</div>
-        <div class="alphabetFilter">S</div>
-        <div class="alphabetFilter">T</div>
-        <div class="alphabetFilter">U</div>
-        <div class="alphabetFilter">V</div>
-        <div class="alphabetFilter">W</div>
-        <div class="alphabetFilter">X</div>
-        <div class="alphabetFilter">Y</div>
-        <div class="alphabetFilter">Z</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'A' }" (click)="onAlphabetClick('A')">A</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'B' }" (click)="onAlphabetClick('B')">B</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'C' }" (click)="onAlphabetClick('C')">C</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'D' }" (click)="onAlphabetClick('D')">D</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'E' }" (click)="onAlphabetClick('E')">E</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'F' }" (click)="onAlphabetClick('F')">F</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'G' }" (click)="onAlphabetClick('G')">G</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'H' }" (click)="onAlphabetClick('H')">H</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'I' }" (click)="onAlphabetClick('I')">I</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'J' }" (click)="onAlphabetClick('J')">J</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'K' }" (click)="onAlphabetClick('K')">K</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'L' }" (click)="onAlphabetClick('L')">L</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'M' }" (click)="onAlphabetClick('M')">M</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'N' }" (click)="onAlphabetClick('N')">N</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'O' }" (click)="onAlphabetClick('O')">O</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'P' }" (click)="onAlphabetClick('P')">P</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'Q' }" (click)="onAlphabetClick('Q')">Q</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'R' }" (click)="onAlphabetClick('R')">R</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'S' }" (click)="onAlphabetClick('S')">S</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'T' }" (click)="onAlphabetClick('T')">T</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'U' }" (click)="onAlphabetClick('U')">U</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'V' }" (click)="onAlphabetClick('V')">V</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'W' }" (click)="onAlphabetClick('W')">W</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'X' }" (click)="onAlphabetClick('X')">X</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'Y' }" (click)="onAlphabetClick('Y')">Y</div>
+        <div class="alphabetFilter" [ngClass]="{ 'selected': firstLetter === 'Z' }" (click)="onAlphabetClick('Z')">Z</div>
     </div>
 
     <div class="sortContainer">

@@ -1,23 +1,72 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdvertisementService } from '../../service/advertisement.service';
+import { catchError, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-all-advertisements',
   templateUrl: './all-advertisements.component.html',
-  styleUrls: ['./all-advertisements.component.css'] // Ispravite styleUrl u styleUrls
+  styleUrls: ['./all-advertisements.component.css']
 })
-export class AllAdvertisementsComponent {
+export class AllAdvertisementsComponent implements OnInit {
+ 
+  advertisements: any = [];
+  name: string = '';
+  firstLetter: string = '';
 
-  advertisements: any[] = [
-    { name: 'Advertisement 1', price: '$100', description: 'Nudim polovan automobil', status: 'Reserved' },
-    { name: 'Advertisement 2', price: '$200', description: 'Nudim polovan telefon', status: 'Purchased' },
-    { name: 'Advertisement 3', price: '$300', description: 'Nudim polovan televizor', status: 'Available' }
-  ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService: AdvertisementService) {
 
+  }
+  
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+        this.name = params['name'];
+        this.fetchAdvertisements();
+    });
+  }
+
+  fetchAdvertisements() {
+    if (this.name || this.firstLetter) {
+      this.advertisementService.search(this.name, this.firstLetter).pipe(
+        catchError((error) => {
+          console.error('Error fetching advertisements:', error);
+          return of([]);
+        })
+      ).subscribe(res => {
+        this.advertisements = res;
+      });
+    } else {
+      this.advertisementService.getAll().pipe(
+        catchError((error) => {
+          console.error('Error fetching advertisements:', error);
+          return of([]);
+        })
+      ).subscribe(res => {
+        this.advertisements = res;
+      });
+    }
+  }
+
+  onAlphabetClick(letter: string) {
+    if (this.firstLetter === letter) {
+        this.firstLetter = '';
+    } else {
+        this.firstLetter = letter;
+    }
+    const currentUrlTree = this.router.parseUrl(this.router.url);
+    const currentParams = { ...currentUrlTree.queryParams };
+    currentParams['first_letter'] = this.firstLetter || null;
+    this.router.navigate([], {
+        queryParams: currentParams,
+        queryParamsHandling: 'merge',
+    }).then(() => {
+        this.fetchAdvertisements();
+    });
+  } 
+  
   navigateToAdvertisementDisplay(): void {
     this.router.navigate(['/home/advertisement']);
   }
-
 }
