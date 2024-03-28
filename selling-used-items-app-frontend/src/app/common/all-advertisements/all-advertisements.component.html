@@ -55,7 +55,7 @@
                 <td>{{ ad.price }}</td>
                 <td>{{ ad.description }}</td>
                 <td>
-                    <button class="view-button" (click)="navigateToAdvertisementDisplay()">View</button>
+                    <button class="view-button" (click)="navigateToAdvertisementDisplay(ad.id)">View</button>
                     <button class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button>
                 </td>
             </tr>

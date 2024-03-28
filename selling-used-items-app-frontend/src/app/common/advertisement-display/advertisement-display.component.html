@@ -17,25 +17,19 @@
     <label for="description">Description:</label>
     <div class="static-text">{{ advertisement.description }}</div>
   </div>
-
-  <hr>
-
-  <div class="image-container">
-    <img src="{{ advertisement.imageUrl }}" alt="Advertisement Image">
-  </div>
-
+  
   <hr> 
 
   <div class="form-group">
-    <label for="commentaries">Commentaries about advertisement creator:</label>
-    <div class="static-text">{{ advertisement.commentaries }}</div>
+    <label for="commentaries">Reviews:</label>
+    <div class="static-text"></div>
   </div>
 
   <hr>
 
   <div class="form-group">
     <label for="description">Contact:</label>
-    <div class="static-text">{{ advertisement.contact }}</div>
+    <div class="static-text">{{ user.email }}</div>
   </div>
 
   <hr>

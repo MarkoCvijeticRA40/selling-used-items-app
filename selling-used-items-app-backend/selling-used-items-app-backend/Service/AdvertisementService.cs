@@ -82,5 +82,10 @@ namespace selling_used_items_app_backend.Service
             }
             return advertisements;
         }
+
+        public IEnumerable<Advertisement> GetByUserId(int userId)
+        {
+            return _advertisementRepository.GetByUserId(userId);
+        }
     }
 }

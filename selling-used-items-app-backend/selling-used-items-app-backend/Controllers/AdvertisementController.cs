@@ -132,5 +132,16 @@ namespace selling_used_items_app_backend.Controllers
                 }
             }
         }
+
+        [HttpGet("user/{userId}")]
+        public ActionResult<IEnumerable<Advertisement>> GetByUserId(int userId)
+        {
+            var advertisements = _advertisementService.GetByUserId(userId);
+            if (advertisements == null)
+            {
+                return NotFound("No advertisements found for the provided user ID.");
+            }
+            return Ok(advertisements);
+        }
     }
 }

@@ -1,35 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdvertisementService } from '../../service/advertisement.service';
+import { Advertisement } from '../../model/advertisement';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-my-advertisement',
   templateUrl: './my-advertisement.component.html',
   styleUrl: './my-advertisement.component.css'
 })
-export class MyAdvertisementComponent {
+export class MyAdvertisementComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  userId : number = 2;
 
-  advertisements: any[] = [
-    { name: 'Advertisement 1', price: '$100', description: 'Nudim polovan automobil', status: 'Reserved' },
-    { name: 'Advertisement 2', price: '$200', description: 'Nudim polovan telefon', status: 'Purchased' },
-    { name: 'Advertisement 3', price: '$300', description: 'Nudim polovan televizor', status: 'Available' }
-  ];
+  advertisements: Advertisement[] = [];
+
+  constructor(private router: Router, private advertisementService: AdvertisementService) {}
+  
+  ngOnInit(): void {
+    this.advertisementService.getByUserId(this.userId).subscribe(res => {
+      this.advertisements = res;
+    })
+  
+  }
 
   navigateToAdvertisements(): void {
     this.router.navigate(['/home/edit-advertisement']);
   }
 
   shouldShowEditDelete(): boolean {
-    return this.advertisements.some(ad => ad.status === 'Available');
+    return this.advertisements.some(ad => ad.advertisementStatus === 0);
   }
 
   shouldShowConfirmRefuse(): boolean {
-    return this.advertisements.some(ad => ad.status === 'Reserved');
+    return this.advertisements.some(ad => ad.advertisementStatus === 1);
   }
 
   shouldShowActions(): boolean {
     return this.shouldShowEditDelete() || this.shouldShowConfirmRefuse();
   }
 
+  deleteAdvertisement(advertisementId: number) {
+    this.advertisementService.delete(advertisementId).pipe(
+      catchError((error) => {
+        return of([]); 
+      })
+    ).subscribe(res => {
+      alert("Succesfully delete advertisement!");
+      this.fetchAdvertisements(); 
+    })
+  }
+
+  fetchAdvertisements() {
+    this.advertisementService.getByUserId(this.userId).subscribe(res => {
+      this.advertisements = res;
+    })
+  }
 }

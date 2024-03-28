@@ -32,7 +32,7 @@ const routes: Routes = [
         component: HomeComponent,
         children: [ 
           { path: 'advertisements', component: AllAdvertisementsComponent },
-          { path: 'advertisement', component: AdvertisementDisplayComponent},     
+          { path: 'advertisement/:id', component: AdvertisementDisplayComponent},     
           { path: 'create-advertisement', component: CreateAdvertisementComponent}, 
           { path: 'edit-advertisement', component: EditAdvertisementComponent},
           { path: 'report-user', component: ReportUserComponent},

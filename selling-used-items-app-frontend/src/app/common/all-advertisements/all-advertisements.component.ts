@@ -94,7 +94,7 @@ export class AllAdvertisementsComponent implements OnInit {
     });
   }
   
-  navigateToAdvertisementDisplay(): void {
-    this.router.navigate(['/home/advertisement']);
+  navigateToAdvertisementDisplay(advertisementId: number): void {
+    this.router.navigate(['/home/advertisement', advertisementId]);
   }
 }

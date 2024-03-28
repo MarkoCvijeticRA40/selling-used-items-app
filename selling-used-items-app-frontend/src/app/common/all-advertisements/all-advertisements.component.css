@@ -107,12 +107,14 @@ background-color: #218838; /* Tamnija nijansa zelene boje kada je dugme hoverova
 }
 
 .delete-button {
-background-color: #FF5733; /* Crvena boja */
-color: white;
-border: none;
-border-radius: 5px;
-padding: 8px 16px;
-cursor: pointer;
+    background-color: red; /* Crvena boja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    float: right; /* Pomeramo dugme skroz desno */
+    margin-right: 10px; /* Dodajemo malo margine između dugmeta i ostalih elemenata */
 }
 
 .pagination {

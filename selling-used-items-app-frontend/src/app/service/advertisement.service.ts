@@ -40,4 +40,8 @@ export class AdvertisementService {
   sell(advertisementId: number): Observable<void> {
     return this.http.put<void>(`${this.route}/${advertisementId}/sell`, null, { headers: this.headers });
   }
+
+  getByUserId(userId: number): Observable<Advertisement[]> {
+    return this.http.get<Advertisement[]>(`${this.route}/user/${userId}`, { headers: this.headers });
+  }
 }
