@@ -1,43 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Comment } from '../model/comment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  private baseUrl = 'http://localhost:5152/api/comments'; // URL tvog backend-a
-
   constructor(private http: HttpClient) { }
 
-  getAllComments(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.baseUrl);
+  getAll(): Observable<Comment[]> {
+    return this.http.get<Comment[]>('http://localhost:5152/api/comments');
   }
 
   getCommentById(commentId: number): Observable<Comment> {
-    const url = `${this.baseUrl}/${commentId}`;
-    return this.http.get<Comment>(url);
+    return this.http.get<Comment>(`http://localhost:5152/api/comments/${commentId}`);
   }
 
   createComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.baseUrl, comment);
+    return this.http.post<Comment>('http://localhost:5152/api/comments', comment);
   }
 
   updateComment(comment: Comment): Observable<Comment> {
-    const url = `${this.baseUrl}/${comment.id}`;
-    return this.http.put<Comment>(url, comment);
+    return this.http.put<Comment>(`http://localhost:5152/api/comments/${comment.id}`, comment);
   }
 
   deleteComment(commentId: number): Observable<void> {
-    const url = `${this.baseUrl}/${commentId}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(`http://localhost:5152/api/comments/${commentId}`);
   }
 
   getAllCommentsByTargetUserId(targetUserId: number): Observable<Comment[]> {
-    const url = `${this.baseUrl}/targetUserId/${targetUserId}`;
-    return this.http.get<Comment[]>(url);
+    return this.http.get<Comment[]>(`http://localhost:5152/api/comments/targetUserId/${targetUserId}`);
+  }
+
+  approve(commentId: number): Observable<void> {
+    return this.http.put<void>(`http://localhost:5152/api/comments/approve/${commentId}`, null);
+  }
+
+  decline(commentId: number): Observable<void> {
+    return this.http.put<void>(`http://localhost:5152/api/comments/decline/${commentId}`, null);
   }
 }
