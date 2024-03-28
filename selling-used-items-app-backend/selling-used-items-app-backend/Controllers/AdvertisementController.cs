@@ -67,7 +67,7 @@ namespace selling_used_items_app_backend.Controllers
             {
                 return BadRequest("ID in the request path does not match the ID in the request body.");
             }
-            var validationResult = _advertisementCreateValidator.ValidateAdvertisement(advertisement);
+            var validationResult = _advertisementUpdateValidator.ValidateAdvertisement(advertisement);
             if (validationResult != ValidationResult.Success)
             {
                 return BadRequest(validationResult.ErrorMessage);

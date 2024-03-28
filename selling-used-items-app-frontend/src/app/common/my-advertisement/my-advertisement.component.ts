@@ -24,10 +24,10 @@ export class MyAdvertisementComponent implements OnInit {
   
   }
 
-  navigateToAdvertisements(): void {
-    this.router.navigate(['/home/edit-advertisement']);
+  navigateToAdvertisements(advertisementId: number): void {
+    this.router.navigate(['/home/edit-advertisement', advertisementId]);
   }
-
+  
   shouldShowEditDelete(): boolean {
     return this.advertisements.some(ad => ad.advertisementStatus === 0);
   }

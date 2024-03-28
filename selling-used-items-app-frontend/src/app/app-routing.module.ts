@@ -34,7 +34,7 @@ const routes: Routes = [
           { path: 'advertisements', component: AllAdvertisementsComponent },
           { path: 'advertisement/:id', component: AdvertisementDisplayComponent},     
           { path: 'create-advertisement', component: CreateAdvertisementComponent}, 
-          { path: 'edit-advertisement', component: EditAdvertisementComponent},
+          { path: 'edit-advertisement/:id', component: EditAdvertisementComponent},
           { path: 'report-user', component: ReportUserComponent},
           { path: 'add-comment', component: RateUserComponent},
           { path: 'comments', component: AcceptDeclineCommentComponent},

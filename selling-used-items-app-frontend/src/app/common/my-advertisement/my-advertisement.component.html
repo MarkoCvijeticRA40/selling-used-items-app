@@ -22,7 +22,7 @@
                     {{ ad.advertisementStatus === 0 ? 'Available' : (ad.advertisementStatus === 1 ? 'Reserved' : 'Sold') }}
                 </td>
                 <td *ngIf="shouldShowEditDelete()">
-                    <button *ngIf="ad.advertisementStatus === 0" class="edit-button" (click)="navigateToAdvertisements()">Edit</button>
+                    <button *ngIf="ad.advertisementStatus === 0" class="edit-button" (click)="navigateToAdvertisements(ad.id)">Edit</button>
                 </td>
                 <td *ngIf="shouldShowEditDelete()">
                     <button *ngIf="ad.advertisementStatus === 0" class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button>
