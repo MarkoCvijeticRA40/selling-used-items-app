@@ -139,3 +139,15 @@ background-color: #0056b3;
 background-color: #007bff; 
 color: white;
 }
+
+.container {
+
+}
+
+.advertisementTable img {
+    display: block; /* Postavite da slika bude blok element */
+    margin: 0 auto; /* Centrirajte sliku */
+    width: 500px; /* Postavite fiksnu širinu slike na 300 piksela */
+    height: auto; /* Omogućite automatsko prilagođavanje visine */
+    max-width: none; /* Poništite maksimalnu širinu */
+}

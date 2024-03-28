@@ -40,15 +40,31 @@
         </select>
     </div>
     <table id="advertisementTable" class="advertisementTable">
-        <tbody>
-          <tr *ngFor="let ad of advertisements">
-            <td>{{ ad.name }}</td>
-            <td>{{ ad.price }}</td>
-            <td>{{ ad.description }}</td>
-            <td><button class="view-button" (click)="navigateToAdvertisementDisplay()">View</button></td>
-            <td><button class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button></td>
-          </tr>
-        </tbody>
+      <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngFor="let ad of advertisements">
+            <tr>
+                <td>{{ ad.name }}</td>
+                <td>{{ ad.price }}</td>
+                <td>{{ ad.description }}</td>
+                <td>
+                    <button class="view-button" (click)="navigateToAdvertisementDisplay()">View</button>
+                    <button class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button>
+                </td>
+            </tr>
+            <tr *ngIf="ad.image"> <!-- Dodajte novi red za prikaz slike ako postoji -->
+                <td colspan="4"> <!-- Spojite ćelije da pokriju sve kolone -->
+                    <img [src]="ad.image" alt="Advertisement Image" width="200">
+                </td>
+            </tr>
+        </ng-container>
       </table>  
       <div class="pagination">
         <button class="pagination-button">
