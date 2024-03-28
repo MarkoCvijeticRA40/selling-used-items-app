@@ -18,18 +18,20 @@
                 <td>{{ ad.name }}</td>
                 <td>{{ ad.price }}</td>
                 <td>{{ ad.description }}</td>
-                <td>{{ ad.status }}</td>
-                <td *ngIf="shouldShowEditDelete()">
-                    <button *ngIf="ad.status === 'Available'" class="edit-button" (click)="navigateToAdvertisements()">Edit</button>
+                <td>
+                    {{ ad.advertisementStatus === 0 ? 'Available' : (ad.advertisementStatus === 1 ? 'Reserved' : 'Sold') }}
                 </td>
                 <td *ngIf="shouldShowEditDelete()">
-                    <button *ngIf="ad.status === 'Available'" class="delete-button">Delete</button>
+                    <button *ngIf="ad.advertisementStatus === 0" class="edit-button" (click)="navigateToAdvertisements(ad.id)">Edit</button>
+                </td>
+                <td *ngIf="shouldShowEditDelete()">
+                    <button *ngIf="ad.advertisementStatus === 0" class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button>
                 </td>
                 <td *ngIf="shouldShowConfirmRefuse()">
-                    <button *ngIf="ad.status === 'Reserved'" class="edit-button">Confirm</button>
+                    <button *ngIf="ad.advertisementStatus === 2" class="edit-button">Confirm</button>
                 </td>
                 <td *ngIf="shouldShowConfirmRefuse()">
-                    <button *ngIf="ad.status === 'Reserved'" class="delete-button">Refuse</button>
+                    <button *ngIf="ad.advertisementStatus === 2" class="delete-button">Refuse</button>
                 </td>
                 <td>Milos Tomic</td>
             </tr>

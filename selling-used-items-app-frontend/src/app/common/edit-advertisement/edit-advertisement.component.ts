@@ -1,73 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Advertisement } from '../../model/advertisement';
+import { AdvertisementService } from '../../service/advertisement.service';
 
 @Component({
   selector: 'app-edit-advertisement',
   templateUrl: './edit-advertisement.component.html',
   styleUrls: ['./edit-advertisement.component.css']
 })
-export class EditAdvertisementComponent {
+export class EditAdvertisementComponent implements OnInit {
 
-  name = new FormControl('', Validators.required);
-  price = new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]);
-  description = new FormControl('', Validators.required);
-  location = new FormControl('', Validators.required);
+  advertisement : Advertisement = new Advertisement();
 
-  advertisementForm = new FormGroup({
-    name: this.name,
-    price: this.price,
-    description: this.description,
-    location: this.location
-  });
+  id : number = 0;
 
-  constructor(private router: Router) { }
-
-  // Implementiraj logiku za preuzimanje postojećeg oglasa i popunjavanje forme
-
-  // Implementiraj logiku za brisanje oglasa ako je potrebno
-
-  get nameError() {
-    if (this.name.hasError('required')) {
-      return 'Name is required';
-    }
-    return '';
+  constructor(private router: Router, private advertisementService : AdvertisementService, private activatedRoute : ActivatedRoute) { }
+  
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'] || '';
+      this.advertisementService.get(this.id).subscribe(res => {
+        this.advertisement = res;
+      });
+    });
   }
-
-  get priceError() {
-    if (this.price.hasError('required')) {
-      return 'Price is required';
-    }
-    if (this.price.hasError('pattern')) {
-      return 'Price must be a number with up to 2 decimal places';
-    }
-    return '';
-  }
-
-  get descriptionError() {
-    if (this.description.hasError('required')) {
-      return 'Description is required';
-    }
-    return '';
-  }
-
-  get locationError() {
-    if (this.location.hasError('required')) {
-      return 'Location is required';
-    }
-    return '';
-  }
-
+  
   navigateToAdvertisements() {
     this.router.navigate(['/home/profile/my-advertisements']);
   }
 
   onSubmit() {
-    if (this.advertisementForm.valid) {
-      alert("Form submitted successfully!");
-      this.router.navigate(['/home/advertisements']);
+    if (!this.advertisement.name || !this.advertisement.price || !this.advertisement.description || !this.advertisement.location) {
+      alert("You must enter all fields!");
     } else {
-      console.log("Please correct the form errors.");
+      this.advertisementService.update(this.id, this.advertisement).subscribe(() => {
+        alert("Advertisement updated successfully!");
+      }, error => {
+        console.error("Error updating advertisement:", error);
+        alert("An error occurred while updating the advertisement. Please try again later.");
+      });
     }
   }
+  
 }

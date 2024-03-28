@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Advertisement } from '../../model/advertisement';
+import { AdvertisementService } from '../../service/advertisement.service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -9,49 +11,17 @@ import { Router } from '@angular/router';
 })
 export class CreateAdvertisementComponent {
 
-  name = new FormControl('', Validators.required);
-  price = new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]);
-  description = new FormControl('', Validators.required);
-  location = new FormControl('', Validators.required);
+  advertisement : Advertisement = new Advertisement();
 
-  advertisementForm = new FormGroup({
-    name: this.name,
-    price: this.price,
-    description: this.description,
-    location: this.location
-  });
+  constructor(private router: Router, private advertisementService: AdvertisementService) { }
 
-  constructor(private router: Router) { }
-
-  get nameError() {
-    if (this.name.hasError('required')) {
-      return 'Name is required';
-    }
-    return '';
-  }
-
-  get priceError() {
-    if (this.price.hasError('required')) {
-      return 'Price is required';
-    }
-    if (this.price.hasError('pattern')) {
-      return 'Price must be a number with up to 2 decimal places';
-    }
-    return '';
-  }
-
-  get descriptionError() {
-    if (this.description.hasError('required')) {
-      return 'Description is required';
-    }
-    return '';
-  }
-
-  get locationError() {
-    if (this.location.hasError('required')) {
-      return 'Location is required';
-    }
-    return '';
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.advertisement.image = reader.result as string; 
+    };
+    reader.readAsDataURL(file);
   }
 
   navigateToAdvertisements() {
@@ -59,12 +29,30 @@ export class CreateAdvertisementComponent {
     console.log("here");
   }
 
+  create() {
+    //HARKODOVANO!
+    this.advertisement.userId = 2;
+    this.advertisementService.create(this.advertisement).pipe(
+      catchError((error) => {
+        console.error('Error fetching advertisements', error);
+        return of([]);
+      })
+    ).subscribe((createdAdvertisement) => {
+      if (createdAdvertisement) {
+        alert('Advertisement created successfully!');
+      } else {
+        alert("Error during advertisement creation!");
+      }
+    });
+  }
+
   onSubmit() {
-    if (this.advertisementForm.valid) {
-      alert("Form submitted successfully!");
-      this.router.navigate(['/home/advertisements']);
-    } else {
-      console.log("Please correct the form errors.");
+    console.log(this.advertisement)
+    if (!this.advertisement.name || !this.advertisement.price || !this.advertisement.description || !this.advertisement.location || !this.advertisement.image) {
+      alert("You must enter all fields!");
+      return;
     }
+    this.create();
+    this.router.navigate(['/home/advertisements']);
   }
 }

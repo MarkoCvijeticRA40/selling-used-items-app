@@ -11,5 +11,6 @@ namespace selling_used_items_app_backend.Service
         void Delete(int id);
         IEnumerable<Advertisement> Search(string name, char? firstLetter, string sortBy);
         //void Sell(int advertisementId);
+         IEnumerable<Advertisement> GetByUserId(int userId);
     }
 }

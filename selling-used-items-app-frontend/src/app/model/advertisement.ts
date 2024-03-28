@@ -7,6 +7,7 @@ export class Advertisement {
     location: string = '';
     userId: number = 0;
     advertisementStatus: number = 0;
+    image: string =  '';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -18,6 +19,7 @@ export class Advertisement {
             this.location = obj.location;
             this.userId = obj.userId;
             this.advertisementStatus = obj.advertisementStatus;
+            this.image = obj.image;
         }
     }
 }

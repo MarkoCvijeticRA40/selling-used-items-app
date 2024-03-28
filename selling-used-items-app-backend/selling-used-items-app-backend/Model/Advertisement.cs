@@ -29,5 +29,8 @@ namespace selling_used_items_app_backend.Model
 
     [Required]
     public AdvertisementStatus advertisementStatus { get; set; }
+
+    [Required]
+    public String image { get; set; }
     }
 }

@@ -107,12 +107,14 @@ background-color: #218838; /* Tamnija nijansa zelene boje kada je dugme hoverova
 }
 
 .delete-button {
-background-color: #FF5733; /* Crvena boja */
-color: white;
-border: none;
-border-radius: 5px;
-padding: 8px 16px;
-cursor: pointer;
+    background-color: red; /* Crvena boja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    float: right; /* Pomeramo dugme skroz desno */
+    margin-right: 10px; /* Dodajemo malo margine između dugmeta i ostalih elemenata */
 }
 
 .pagination {
@@ -138,4 +140,16 @@ background-color: #0056b3;
 .selected {
 background-color: #007bff; 
 color: white;
+}
+
+.container {
+
+}
+
+.advertisementTable img {
+    display: block; /* Postavite da slika bude blok element */
+    margin: 0 auto; /* Centrirajte sliku */
+    width: 500px; /* Postavite fiksnu širinu slike na 300 piksela */
+    height: auto; /* Omogućite automatsko prilagođavanje visine */
+    max-width: none; /* Poništite maksimalnu širinu */
 }

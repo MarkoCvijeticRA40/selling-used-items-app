@@ -2,7 +2,7 @@
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 5px;
-    width: 250px; /* Smanjena širina forme */
+    width: 400px; /* Povećana širina forme */
     margin: 20px auto 0; /* Spuštanje forme nadole za 20px */
 }
 
@@ -11,21 +11,19 @@
     margin-bottom: 10px; /* Smanjen razmak ispod naslova */
 }
 
-.editAdvertisementForm form {
-    display: grid;
-    gap: 8px; /* Smanjen razmak između labela i input polja */
-}
-
 .editAdvertisementForm label {
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px; /* Dodatni razmak između labela */
 }
 
 .editAdvertisementForm input[type="text"],
 .editAdvertisementForm textarea {
-    width: 95%; /* Popunjavanje širine roditeljskog elementa */
+    width: 100%; /* Popunjavanje širine roditeljskog elementa */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 10px; /* Dodatni razmak ispod input polja */
 }
 
 .editAdvertisementForm input[type="submit"] {
@@ -35,7 +33,7 @@
     border-radius: 5px;
     padding: 10px 30px; /* Manja visina, ali dužina ostaje ista */
     cursor: pointer;
-    margin: 0 auto; /* Centriranje dugmeta */
     display: block; /* Da bi se dugme centriralo */
-    width: 250px;
+    margin: 0 auto; /* Centriranje dugmeta */
+    width: 150px; /* Smanjena širina dugmeta */
 }

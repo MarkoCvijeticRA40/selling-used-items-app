@@ -67,7 +67,7 @@ namespace selling_used_items_app_backend.Controllers
             {
                 return BadRequest("ID in the request path does not match the ID in the request body.");
             }
-            var validationResult = _advertisementCreateValidator.ValidateAdvertisement(advertisement);
+            var validationResult = _advertisementUpdateValidator.ValidateAdvertisement(advertisement);
             if (validationResult != ValidationResult.Success)
             {
                 return BadRequest(validationResult.ErrorMessage);
@@ -112,6 +112,7 @@ namespace selling_used_items_app_backend.Controllers
                     }
 
                     advertisement.advertisementStatus = AdvertisementStatus.Sold;
+                    _advertisementService.Update(advertisement);
 
                     var purchase = new Purchase
                     {
@@ -119,7 +120,6 @@ namespace selling_used_items_app_backend.Controllers
                         userId = advertisement.userId,
                     };
 
-                    _advertisementService.Update(advertisement);
                     _purchaseService.Create(purchase);
 
                     unitOfWork.SaveChanges();
@@ -131,6 +131,17 @@ namespace selling_used_items_app_backend.Controllers
                     return StatusCode(500, "Error: " + ex.Message);
                 }
             }
+        }
+
+        [HttpGet("user/{userId}")]
+        public ActionResult<IEnumerable<Advertisement>> GetByUserId(int userId)
+        {
+            var advertisements = _advertisementService.GetByUserId(userId);
+            if (advertisements == null)
+            {
+                return NotFound("No advertisements found for the provided user ID.");
+            }
+            return Ok(advertisements);
         }
     }
 }

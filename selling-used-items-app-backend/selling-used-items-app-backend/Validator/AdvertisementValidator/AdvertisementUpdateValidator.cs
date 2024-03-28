@@ -19,11 +19,6 @@ namespace selling_used_items_app_backend.Validator.AdvertisementValidator
                 return new ValidationResult("Advertisement object is null.");
             }
 
-            if (_dbContext.Advertisements.Any(a => a.id == advertisement.id))
-            {
-                return new ValidationResult("Advertisement with this ID already exists.");
-            }
-
             if (advertisement.price <= 0)
             {
                 return new ValidationResult("Price must be greater than zero.");

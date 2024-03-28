@@ -9,5 +9,6 @@ namespace selling_used_items_app_backend.Repository
         void Create(Advertisement advertisement);
         void Update(Advertisement advertisement);
         void Delete(int id);
+        IEnumerable<Advertisement> GetByUserId(int userId);
     }
 }
