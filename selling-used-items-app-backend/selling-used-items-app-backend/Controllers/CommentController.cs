@@ -70,23 +70,28 @@ namespace selling_used_items_app_backend.Controllers
             return Ok(comments);
         }
 
-        [HttpPatch("{id}/approve")]
-        public IActionResult ApproveComment(int id)
+        [HttpPut("approve/{id}")]
+        public IActionResult Approve(int id)
         {
             var comment = _commentService.Get(id);
             if (comment == null)
             {
-                return NotFound("Comment not found.");
+                return NotFound("Comment with the provided ID does not exist.");
             }
+            _commentService.Approve(comment);
+            return NoContent();
+        }
 
-            if (comment.isApproved)
+        [HttpPut("decline/{id}")]
+        public IActionResult Decline(int id)
+        {
+            var comment = _commentService.Get(id);
+            if (comment == null)
             {
-                return BadRequest("Comment is already approved.");
+                return NotFound("Comment with the provided ID does not exist.");
             }
-
-            comment.isApproved = true;
-            _commentService.Update(comment);
-            return Ok($"Comment with ID {id} has been approved.");
+            _commentService.Decline(comment);
+            return NoContent();
         }
     }
 }

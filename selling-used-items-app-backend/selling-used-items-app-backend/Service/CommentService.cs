@@ -40,6 +40,16 @@ namespace selling_used_items_app_backend.Service
             _commentRepository.Update(comment);
         }
 
+        public void Approve(Comment comment) {
+            comment.isApproved = true;
+            _commentRepository.Update(comment);
+        }
+
+        public void Decline(Comment comment) {
+            comment.isApproved = false;
+            _commentRepository.Update(comment);
+        }
+
         public void Delete(int id)
         {
             _commentRepository.Delete(id);

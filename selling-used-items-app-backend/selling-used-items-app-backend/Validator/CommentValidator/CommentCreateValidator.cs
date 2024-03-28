@@ -55,14 +55,14 @@ namespace selling_used_items_app_backend.Validator.CommentValidator
                 return new ValidationResult("Comment with the same AdvertisementId and CreatorId already exists.");
             }
 
-            if (!_dbContext.Purchases.Any(p => p.userId == comment.creatorId && p.advertisementId == comment.advertisementId))
+            /*if (!_dbContext.Purchases.Any(p => p.userId == comment.creatorId && p.advertisementId == comment.advertisementId))
             {
                 return new ValidationResult("Can not comment because you do not have purchase with these user!");
-            }
+            }*/
 
-            if(_dbContext.Comments.Any(c => c.isApproved == true)) {
+            /*if(_dbContext.Comments.Any(c => c.isApproved == true)) {
                 return new ValidationResult("Comment can not be approved!");
-            }
+            }*/
 
             return ValidationResult.Success;
         }
