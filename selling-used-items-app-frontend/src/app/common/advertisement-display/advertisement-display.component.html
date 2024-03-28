@@ -22,9 +22,15 @@
 
   <div class="form-group">
     <label for="commentaries">Reviews:</label>
-    <div class="static-text"></div>
+    <div class="static-text">
+      <ul>
+        <li *ngFor="let comment of comments">
+          <div>{{ '- ' + comment.message + ' ' + '&#9733;'.repeat(comment.rating) }}</div>
+        </li>
+      </ul>
+    </div>
   </div>
-
+  
   <hr>
 
   <div class="form-group">
@@ -35,7 +41,7 @@
   <hr>
 
   <div class="button-group">
-    <button *ngIf="advertisement.status === 'Available'" class="purchase-button" (click)="purchaseAdvertisement()">Reserve</button>
+    <button *ngIf="advertisement.advertisementStatus === 0" class="purchase-button" (click)="purchaseAdvertisement()">Reserve</button>
     <button class="back-button" (click)="navigateToAdvertisements()">Back</button>
   </div>    
 </div>

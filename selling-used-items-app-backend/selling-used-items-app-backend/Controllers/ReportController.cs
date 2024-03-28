@@ -12,11 +12,13 @@ namespace selling_used_items_app_backend.Controllers
     {
         private readonly IReportService _reportService;
         private readonly ReportCreateValidator _reportCreateValidator;
+        private readonly IEmailService _emailService;
 
-        public ReportController(IReportService reportService, ReportCreateValidator reportCreateValidator)
+        public ReportController(IReportService reportService, ReportCreateValidator reportCreateValidator, IEmailService emailService)
         {
             _reportService = reportService ?? throw new ArgumentNullException(nameof(reportService));
             _reportCreateValidator = reportCreateValidator ?? throw new ArgumentNullException(nameof(reportCreateValidator));
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -36,6 +38,8 @@ namespace selling_used_items_app_backend.Controllers
             }
 
             _reportService.Create(report);
+            _emailService.SendEmailAsync("marko.cvijetic@vegait.rs", "New report", report.reason);    
+                        
             return Ok("Report created successfully.");
         }
     }

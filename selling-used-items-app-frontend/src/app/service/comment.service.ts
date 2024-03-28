@@ -31,7 +31,7 @@ export class CommentService {
   }
 
   getAllCommentsByTargetUserId(targetUserId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`http://localhost:5152/api/comments/targetUserId/${targetUserId}`);
+    return this.http.get<Comment[]>(`http://localhost:5152/api/comments/target-user/${targetUserId}`);
   }
 
   approve(commentId: number): Observable<void> {
