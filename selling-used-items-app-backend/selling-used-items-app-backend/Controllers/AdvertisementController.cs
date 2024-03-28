@@ -112,6 +112,7 @@ namespace selling_used_items_app_backend.Controllers
                     }
 
                     advertisement.advertisementStatus = AdvertisementStatus.Sold;
+                    _advertisementService.Update(advertisement);
 
                     var purchase = new Purchase
                     {
@@ -119,7 +120,6 @@ namespace selling_used_items_app_backend.Controllers
                         userId = advertisement.userId,
                     };
 
-                    _advertisementService.Update(advertisement);
                     _purchaseService.Create(purchase);
 
                     unitOfWork.SaveChanges();
