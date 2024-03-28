@@ -5,6 +5,7 @@ import { User } from '../../model/user';
 import { UserService } from '../../service/user.service';
 import { CommentService } from '../../service/comment.service';
 import { catchError, of, switchMap } from 'rxjs';
+import { Advertisement } from '../../model/advertisement';
 
 @Component({
   selector: 'app-advertisement-display',
@@ -16,12 +17,7 @@ export class AdvertisementDisplayComponent implements OnInit {
   id : string = "";
   user: User = new User();
   comments: any;
-  
-  advertisement: any = {
-    commentaries: 'Great man! ★★★★★ - Dejan Dejanovic',
-    contact: 'marko.cvijetic@vegait.rs'
-  };
-  
+  advertisement: Advertisement = new Advertisement();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService : AdvertisementService, private userService: UserService, private commentService: CommentService) { }
   

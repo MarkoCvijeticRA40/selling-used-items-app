@@ -2,7 +2,8 @@
     <h2>Contact support</h2>
     <form>
         <label for="reason">Send report:</label>
-        <input type="text" id="reason" name="reason" required>
+        <input type="text" id="reason" name="reason" required [(ngModel)]="report.reason">
+
 
         <button type="button" (click)="submitReport()">Submit</button>
         <button type="button" (click)="goBack()">Back</button>

@@ -41,7 +41,7 @@
   <hr>
 
   <div class="button-group">
-    <button *ngIf="advertisement.status === 'Available'" class="purchase-button" (click)="purchaseAdvertisement()">Reserve</button>
+    <button *ngIf="advertisement.advertisementStatus === 0" class="purchase-button" (click)="purchaseAdvertisement()">Reserve</button>
     <button class="back-button" (click)="navigateToAdvertisements()">Back</button>
   </div>    
 </div>
