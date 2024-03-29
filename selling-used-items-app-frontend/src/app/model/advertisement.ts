@@ -8,6 +8,7 @@ export class Advertisement {
     userId: number = 0;
     advertisementStatus: number = 0;
     image: string =  '';
+    reservedBy: number = 0;
 
     public constructor(obj?: any) {
         if (obj) {
@@ -20,6 +21,7 @@ export class Advertisement {
             this.userId = obj.userId;
             this.advertisementStatus = obj.advertisementStatus;
             this.image = obj.image;
+            this.reservedBy = obj.reservedBy;
         }
     }
 }

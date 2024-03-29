@@ -1,4 +1,4 @@
-﻿using selling_used_items_app_backend;
+﻿using selling_used_items_app_backend.Enum;
 using selling_used_items_app_backend.Model;
 
 namespace selling_used_items_app_backend.Repository
@@ -47,6 +47,11 @@ namespace selling_used_items_app_backend.Repository
         public IEnumerable<Advertisement> GetByUserId(int userId)
         {
             return _context.Advertisements.Where(a => a.userId == userId).ToList();
+        }
+
+        public IEnumerable<Advertisement> GetAllAvailable()
+        {
+            return _context.Advertisements.Where(ad => ad.advertisementStatus == AdvertisementStatus.Avaliable).ToList();
         }
     }
 }

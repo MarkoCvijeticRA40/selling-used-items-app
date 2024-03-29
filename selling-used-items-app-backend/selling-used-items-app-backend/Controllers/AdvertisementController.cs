@@ -143,5 +143,12 @@ namespace selling_used_items_app_backend.Controllers
             }
             return Ok(advertisements);
         }
+
+        [HttpGet("available")]
+        public ActionResult<IEnumerable<Advertisement>> GetAllAvailable()
+        {
+            var advertisements = _advertisementService.GetAllAvailable();
+            return Ok(advertisements);
+        }
     }
 }
