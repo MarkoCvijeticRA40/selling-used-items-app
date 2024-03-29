@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit{
     ).subscribe(res => {
       if (res && res.token) {
         localStorage.setItem("jwt", res.token); 
+        console.log("ovde");
         this.router.navigate(['/home/advertisements']); 
       } else {
         alert("Wrong credentials!");
