@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-home',
@@ -35,8 +36,14 @@ export class HomeComponent implements OnInit {
     const url = '/home/advertisements' + (queryString ? `?${queryString}` : '');
     this.router.navigateByUrl(url);
   }
+
+  logout(): void {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['/login']);
+  }
   
   navigateToLogin() {
+    this.logout();
     this.router.navigate(['/login']);
   }
 
@@ -57,7 +64,6 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToRateUser() {
-    alert("asdasd");
     this.router.navigate(['/home/add-comment']);
   }
 

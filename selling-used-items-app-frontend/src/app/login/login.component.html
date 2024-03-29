@@ -4,11 +4,11 @@
   </div>
   
   <label for="uname"><b>Email</b></label>
-  <input type="text" placeholder="Enter Email" name="uname">
+  <input type="text" placeholder="Enter Email" name="uname" [(ngModel)]="email">
   <br>
   <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter Password" name="psw">
-  <button type="button" (click)="navigateToProfile()">Login</button>
+  <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password">
+  <button type="button" (click)="login()">Login</button>
   <input type="checkbox" checked="checked" name="remember"> Remember me
   <div>
     <span class="psw"><a [routerLink]="['/forgot-password']">Forgot password?</a></span>

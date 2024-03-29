@@ -18,6 +18,8 @@ import { AllUsersComponent } from './administrator/all-users/all-users.component
 import { MyPurchaseComponent } from './common/my-purchase/my-purchase.component';
 import { RateUserComponent } from './common/rate-user/rate-user.component';
 import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
+import { AuthGuard } from './service/auth-guard';
+import { UnauthorizeComponent } from './unauthorize/unauthorize.component';
 
 const routes: Routes = [
   { 
@@ -25,28 +27,33 @@ const routes: Routes = [
     component: AppComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent},
-      { path: 'forgot-password', component: ForgotPasswordComponent},
+      { path: 'unauthorize', component: UnauthorizeComponent},
+      { path: 'register', component: RegisterComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
       { 
         path: 'home', 
-        component: HomeComponent,
+        component: HomeComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator']},
         children: [ 
-          { path: 'advertisements', component: AllAdvertisementsComponent },
-          { path: 'advertisement/:id', component: AdvertisementDisplayComponent},     
-          { path: 'create-advertisement', component: CreateAdvertisementComponent}, 
-          { path: 'edit-advertisement/:id', component: EditAdvertisementComponent},
-          { path: 'report-user', component: ReportUserComponent},
-          { path: 'add-comment', component: RateUserComponent},
-          { path: 'comments', component: AcceptDeclineCommentComponent},
-          { path: 'profile', component: ProfileComponent,
-          children: [
-            { path: 'edit-profile', component: EditProfileComponent },
-            { path: 'my-advertisements', component: MyAdvertisementComponent},
-            { path: 'my-purchases', component: MyPurchaseComponent},
-            { path: 'all-users', component: AllUsersComponent},
-            { path: 'change-password', component: ChangePasswordComponent},
-          ] 
-        },
+          { path: 'advertisements', component: AllAdvertisementsComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
+          { path: 'advertisement/:id', component: AdvertisementDisplayComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
+          { path: 'create-advertisement', component: CreateAdvertisementComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
+          { path: 'edit-advertisement/:id', component: EditAdvertisementComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
+          { path: 'report-user', component: ReportUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser'] } },
+          { path: 'add-comment', component: RateUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator'] } },
+          { path: 'comments', component: AcceptDeclineCommentComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator'] } },
+          { 
+            path: 'profile', 
+            component: ProfileComponent, 
+            canActivate: [AuthGuard], 
+            data: { expectedRole: ['RegisteredUser','Administrator'] },
+            children: [
+              { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser','Administrator'] } },
+              { path: 'my-advertisements', component: MyAdvertisementComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser','Administrator'] } },
+              { path: 'my-purchases', component: MyPurchaseComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser','Administrator'] } },
+              { path: 'all-users', component: AllUsersComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator'] } },
+              { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser','Administrator'] } },
+            ] 
+          },
         ]
       }
     ]

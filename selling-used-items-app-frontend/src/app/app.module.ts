@@ -23,6 +23,7 @@ import { RateUserComponent } from './common/rate-user/rate-user.component';
 import { AcceptDeclineCommentComponent } from './administrator/accept-decline-comment/accept-decline-comment.component';
 import { FormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
+import { UnauthorizeComponent } from './unauthorize/unauthorize.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     MyPurchaseComponent,
     RateUserComponent,
     AcceptDeclineCommentComponent,
+    UnauthorizeComponent,
   ],
   imports: [
     BrowserModule,

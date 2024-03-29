@@ -2,23 +2,27 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using selling_used_items_app_backend.Enum;
 using selling_used_items_app_backend.Service;
 
 public class JWTService : IJWTService
 {
     private readonly IConfiguration _configuration;
+    private readonly IUserService _userService;
 
-    public JWTService(IConfiguration configuration) {
+    public JWTService(IConfiguration configuration, IUserService userService) {
         _configuration = configuration;
+        _userService = userService;
     }
 
-    public string GenerateToken(string email, string password, string role)
+    public string GenerateToken(string email, String userRole, int userId)
     {
         List<Claim> claims = new List<Claim> {
-            new Claim(ClaimTypes.Email, email),
-            new Claim(ClaimTypes.Role, role),
+        new Claim(ClaimTypes.Email, email),
+        new Claim("UserRole", userRole.ToString()),
+        new Claim("UserId", userId.ToString())
         };
-
+        
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration.GetSection("AppSettings:Token").Value!));
 
