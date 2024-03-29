@@ -10,7 +10,6 @@
                 <th *ngIf="shouldShowEditDelete()">Delete</th>
                 <th *ngIf="shouldShowConfirmRefuse()">Confirm</th>
                 <th *ngIf="shouldShowConfirmRefuse()">Refuse</th>
-                <th>Reserved by</th>
             </tr>
         </thead>
         <tbody>
@@ -28,12 +27,11 @@
                     <button *ngIf="ad.advertisementStatus === 0" class="delete-button" (click)="deleteAdvertisement(ad.id)">Delete</button>
                 </td>
                 <td *ngIf="shouldShowConfirmRefuse()">
-                    <button *ngIf="ad.advertisementStatus === 2" class="edit-button">Confirm</button>
+                    <button *ngIf="ad.advertisementStatus === 1" class="edit-button" (click)="confirm(ad)">Confirm</button>
                 </td>
                 <td *ngIf="shouldShowConfirmRefuse()">
-                    <button *ngIf="ad.advertisementStatus === 2" class="delete-button">Refuse</button>
+                    <button *ngIf="ad.advertisementStatus === 1" class="delete-button" (click)="refuse(ad)">Refuse</button>
                 </td>
-                <td>Milos Tomic</td>
             </tr>
         </tbody> 
     </table>

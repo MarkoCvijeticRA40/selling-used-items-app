@@ -1,4 +1,5 @@
-﻿using selling_used_items_app_backend.Model;
+﻿using selling_used_items_app_backend.dto;
+using selling_used_items_app_backend.Model;
 
 namespace selling_used_items_app_backend.Service
 {
@@ -9,5 +10,6 @@ namespace selling_used_items_app_backend.Service
         void Create(Purchase purchase);
         void Update(Purchase purchase);
         void Delete(int id);
+        IEnumerable<AdvertisementPurchaseDTO> GetByUserId(int userId);
     }
 }

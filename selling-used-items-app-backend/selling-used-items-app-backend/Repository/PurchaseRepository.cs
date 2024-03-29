@@ -42,5 +42,10 @@ namespace selling_used_items_app_backend.Repository
                 _context.SaveChanges();
             }
         }
+
+        public IEnumerable<Purchase> GetByUserId(int userId)
+        {
+            return _context.Purchases.Where(p => p.userId == userId).ToList();
+        }
     }
 }

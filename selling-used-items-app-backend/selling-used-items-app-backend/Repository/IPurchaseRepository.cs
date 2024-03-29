@@ -9,5 +9,6 @@ namespace selling_used_items_app_backend.Repository
         void Create(Purchase purchase);
         void Update(Purchase purchase);
         void Delete(int id);
+        IEnumerable<Purchase> GetByUserId(int userId);
     }
 }

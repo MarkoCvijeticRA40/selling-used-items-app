@@ -6,6 +6,7 @@ import { UserService } from '../../service/user.service';
 import { CommentService } from '../../service/comment.service';
 import { catchError, of, switchMap } from 'rxjs';
 import { Advertisement } from '../../model/advertisement';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-advertisement-display',
@@ -18,6 +19,7 @@ export class AdvertisementDisplayComponent implements OnInit {
   user: User = new User();
   comments: any;
   advertisement: Advertisement = new Advertisement();
+  loggedUserId: number = 2;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService : AdvertisementService, private userService: UserService, private commentService: CommentService) { }
   
@@ -46,13 +48,21 @@ export class AdvertisementDisplayComponent implements OnInit {
       this.comments = comments;
     });
   }
-  
+
+  reserve() {
+    this.advertisement.advertisementStatus = 1;
+    this.advertisement.reservedBy = this.loggedUserId;
+    this.advertisementService.update(this.advertisement.id,this.advertisement).subscribe((res) => {
+    });
+    this.router.navigate(['/home/advertisements']);
+  }
   
   navigateToAdvertisements(): void {
     this.router.navigate(['/home/advertisements']);
   }
 
   purchaseAdvertisement(): void {
+    this.reserve();
     alert('Successfully purchased advertisement!');
     this.navigateToAdvertisements();
   }

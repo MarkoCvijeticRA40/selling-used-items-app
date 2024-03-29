@@ -44,4 +44,8 @@ export class AdvertisementService {
   getByUserId(userId: number): Observable<Advertisement[]> {
     return this.http.get<Advertisement[]>(`${this.route}/user/${userId}`, { headers: this.headers });
   }
+
+  getAllAvailable(): Observable<Advertisement[]> {
+    return this.http.get<Advertisement[]>(`${this.route}/available`, { headers: this.headers });
+  }  
 }

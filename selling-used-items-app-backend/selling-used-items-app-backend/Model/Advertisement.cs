@@ -32,5 +32,7 @@ namespace selling_used_items_app_backend.Model
 
     [Required]
     public String image { get; set; }
+
+    public int? reservedBy { get; set; }
     }
 }

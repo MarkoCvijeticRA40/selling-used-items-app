@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PurchaseService } from '../../service/purchase.service';
+import { log } from 'console';
+import { AdvertisementPurchaseDTO } from '../../dto/advertisementPurchasedto';
 
 @Component({
   selector: 'app-my-purchase',
   templateUrl: './my-purchase.component.html',
   styleUrl: './my-purchase.component.css'
 })
-export class MyPurchaseComponent {
-  
-  purchases: any[] = [
-    { purchaseId: 1 },
-    { purchaseId: 2 },
-    { purchaseId: 3 },
-  ];
+export class MyPurchaseComponent implements OnInit {
 
-  advertisements: any[] = [
-    { name: 'Advertisement 1', price: '$100', description: 'Nudim polovan automobil', status: 'Reserved' },
-    { name: 'Advertisement 2', price: '$200', description: 'Nudim polovan telefon', status: 'Purchased' },
-    { name: 'Advertisement 3', price: '$300', description: 'Nudim polovan televizor', status: 'Available' }
-  ];
+  loggedUserId : number = 2;
+
+  loggedUserPurchasesInformation : AdvertisementPurchaseDTO[] = [];
+
+  constructor(private purchaseService: PurchaseService) {
+
+  }
+
+  ngOnInit(): void {
+    this.purchaseService.getByUserId(this.loggedUserId).subscribe((res) => {
+      this.loggedUserPurchasesInformation = res;
+    })
+  }
 }

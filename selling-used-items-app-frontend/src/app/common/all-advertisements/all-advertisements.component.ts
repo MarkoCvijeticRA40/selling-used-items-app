@@ -51,7 +51,7 @@ export class AllAdvertisementsComponent implements OnInit {
         this.advertisements = res;
       });
     } else {
-      this.advertisementService.getAll().pipe(
+      this.advertisementService.getAllAvailable().pipe(
         catchError((error) => {
           console.error('Error fetching advertisements:', error);
           return of([]);

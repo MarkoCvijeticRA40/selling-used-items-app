@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Purchase } from '../model/purchase';
+import { AdvertisementPurchaseDTO } from '../dto/advertisementPurchasedto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,10 @@ export class PurchaseService {
   deletePurchase(purchaseId: number): Observable<void> {
     const url = `${this.baseUrl}/${purchaseId}`;
     return this.http.delete<void>(url);
+  }
+
+  getByUserId(userId: number): Observable<AdvertisementPurchaseDTO[]> {
+    const url = `${this.baseUrl}/user/${userId}`;
+    return this.http.get<AdvertisementPurchaseDTO[]>(url);
   }
 }

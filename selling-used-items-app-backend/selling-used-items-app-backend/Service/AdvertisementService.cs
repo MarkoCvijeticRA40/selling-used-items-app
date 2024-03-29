@@ -50,7 +50,7 @@ namespace selling_used_items_app_backend.Service
 
         public IEnumerable<Advertisement> Search(string name, char? firstLetter, string sortBy)
         {
-            var advertisements = _advertisementRepository.GetAll();
+            var advertisements = _advertisementRepository.GetAllAvailable();
 
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -86,6 +86,11 @@ namespace selling_used_items_app_backend.Service
         public IEnumerable<Advertisement> GetByUserId(int userId)
         {
             return _advertisementRepository.GetByUserId(userId);
+        }
+
+        public IEnumerable<Advertisement> GetAllAvailable()
+        {
+            return _advertisementRepository.GetAllAvailable();
         }
     }
 }
