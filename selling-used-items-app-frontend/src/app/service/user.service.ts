@@ -47,4 +47,9 @@ export class UserService {
   changePassword(user: User): Observable<void> {
     return this.http.put<void>(`http://localhost:5152/api/users/change-password/${user.id}`, user, { headers: this.headers });
   }  
+
+  login(email: string, password: string): Observable<any> {
+    const url = `http://localhost:5152/api/users/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+    return this.http.post<any>(url, null, { headers: this.headers });
+  }  
 }

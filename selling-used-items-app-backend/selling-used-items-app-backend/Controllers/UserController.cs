@@ -91,18 +91,14 @@ namespace selling_used_items_app_backend.Controllers
         }
 
         [HttpPost("generate-token")]
-        public IActionResult GenerateToken(string email, string password, string role)
+        public IActionResult GenerateToken(string email, UserRole userRole, int userId)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            {
-                return BadRequest("Email and password are required.");
-            }
-            string token = _jwtService.GenerateToken(email, password, role);
+            string token = _jwtService.GenerateToken(email, userRole.ToString(), userId);
             return Ok(new { Token = token });
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string email, string password, string role)
+        public IActionResult Login(string email, string password)
         {
             var user = _userService.GetByEmail(email);
             if (user == null)
@@ -117,7 +113,7 @@ namespace selling_used_items_app_backend.Controllers
                 return Unauthorized("Wrong credentials!");
             }
 
-            var token = _jwtService.GenerateToken(email, password, role);
+            var token = _jwtService.GenerateToken(email, user.userRole.ToString(), user.id);
             return Ok(new { Token = token });
         }
 
