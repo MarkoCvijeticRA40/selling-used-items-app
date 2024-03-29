@@ -45,7 +45,7 @@ namespace selling_used_items_app_backend.Repository
 
         public IEnumerable<Comment> GetAllByTargetUserId(int targetUserId)
         {
-            return _context.Comments.Where(c => c.targetUserId == targetUserId).ToList();
+            return _context.Comments.Where(c => c.targetUserId == targetUserId && c.isApproved).ToList();
         }
     }
 }

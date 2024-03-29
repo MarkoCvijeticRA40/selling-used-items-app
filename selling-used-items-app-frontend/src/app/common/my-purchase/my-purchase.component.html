@@ -5,17 +5,15 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Description</th>
-                <th>Status</th>
                 <th>Purchase ID</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ad of advertisements">
+            <tr *ngFor="let ad of loggedUserPurchasesInformation">
                 <td>{{ ad.name }}</td>
                 <td>{{ ad.price }}</td>
                 <td>{{ ad.description }}</td>
-                <td>{{ ad.status }}</td>
-                <td>3</td>
+                <td>{{ ad.purchaseId }}</td>
             </tr>
         </tbody> 
     </table>

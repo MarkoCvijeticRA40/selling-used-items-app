@@ -10,7 +10,6 @@
                 <th *ngIf="shouldShowEditDelete()">Delete</th>
                 <th *ngIf="shouldShowConfirmRefuse()">Confirm</th>
                 <th *ngIf="shouldShowConfirmRefuse()">Refuse</th>
-                <th>Reserved by</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +32,6 @@
                 <td *ngIf="shouldShowConfirmRefuse()">
                     <button *ngIf="ad.advertisementStatus === 1" class="delete-button" (click)="refuse(ad)">Refuse</button>
                 </td>
-                <td>Milos Tomic</td>
             </tr>
         </tbody> 
     </table>

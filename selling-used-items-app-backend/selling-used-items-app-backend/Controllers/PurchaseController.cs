@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using selling_used_items_app_backend.dto;
 using selling_used_items_app_backend.Model;
 using selling_used_items_app_backend.Service;
 using selling_used_items_app_backend.Validator.PurchaseValidator;
@@ -49,17 +50,15 @@ namespace selling_used_items_app_backend.Controllers
             return CreatedAtAction(nameof(GetPurchase), new { id = purchase.id }, purchase);
         }
 
-        [HttpPatch("{id}/{newStatus}")]
-        public IActionResult UpdatePurchaseStatus(int id, int newStatus)
+        [HttpGet("user/{userId}")]
+        public ActionResult<IEnumerable<AdvertisementPurchaseDTO>> GetByUserId(int userId)
         {
-            var purchase = _purchaseService.Get(id);
-            if (purchase == null)
+            var advertisementPurchaseDTOs = _purchaseService.GetByUserId(userId);
+            if (advertisementPurchaseDTOs == null || !advertisementPurchaseDTOs.Any())
             {
-                return NotFound();
+                return NotFound("No advertisements found for the provided user ID.");
             }
-            _purchaseService.Update(purchase);
-
-            return Ok($"Purchase with ID {id} status has been updated to {newStatus}.");
+            return Ok(advertisementPurchaseDTOs);
         }
     }
 }
