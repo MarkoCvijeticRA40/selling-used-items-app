@@ -21,7 +21,22 @@ export class MyAdvertisementComponent implements OnInit {
     this.advertisementService.getByUserId(this.userId).subscribe(res => {
       this.advertisements = res;
     })
-  
+  }
+
+  confirm(advertisement: Advertisement) {
+    advertisement.advertisementStatus = 2;
+    advertisement.reservedBy = this.userId;
+    this.advertisementService.update(advertisement.id, advertisement).subscribe((res) => {
+      alert("Succesfully confirm advertisement!");
+    });
+  }
+
+  refuse(advertisement: Advertisement) {
+    advertisement.advertisementStatus = 0;
+    advertisement.reservedBy = this.userId;
+    this.advertisementService.update(advertisement.id, advertisement).subscribe((res) => {
+      alert("Succesfully refuse advertisement!");
+    });
   }
 
   navigateToAdvertisements(advertisementId: number): void {
