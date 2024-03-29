@@ -5,6 +5,7 @@ export class AdvertisementPurchaseDTO {
     price: number = 0;
     description: string = '';
     advertisementStatus: number = 0;
+    advertisementCreatorId: number = 0;
 
     public constructor(obj?: any) {
         if(obj) {
@@ -13,6 +14,7 @@ export class AdvertisementPurchaseDTO {
             this.price = obj.price;
             this.description = obj.description;
             this.advertisementStatus = obj.advertisementStatus;
+            this.advertisementCreatorId = obj.advertisementCreatorId;
         }
     }
   }

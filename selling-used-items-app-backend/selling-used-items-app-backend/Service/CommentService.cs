@@ -6,12 +6,14 @@ namespace selling_used_items_app_backend.Service
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _commentRepository;
+        private readonly IPurchaseService _purchaseService;
 
         public CommentService() { }
 
-        public CommentService(ICommentRepository commentRepository)
+        public CommentService(ICommentRepository commentRepository, IPurchaseService purchaseService)
         {
             _commentRepository = commentRepository ?? throw new ArgumentNullException(nameof(commentRepository));
+            _purchaseService = purchaseService;
         }
 
         public IEnumerable<Comment> GetAll()
@@ -29,6 +31,14 @@ namespace selling_used_items_app_backend.Service
             if (comment == null)
                 throw new ArgumentNullException(nameof(comment));
 
+            var existingCommentWithPurchaseId = _commentRepository.GetAll().FirstOrDefault(c => c.purchaseId == comment.purchaseId);
+            var advertisementCreatorId = _purchaseService.GetAdvertisementCreatorIdByPurchaseId(comment.purchaseId);
+            comment.targetUserId = advertisementCreatorId;
+
+            if (existingCommentWithPurchaseId != null)
+            {
+                throw new Exception($"Comment with {comment.purchaseId} already exist!.");
+            }
             _commentRepository.Create(comment);
         }
 

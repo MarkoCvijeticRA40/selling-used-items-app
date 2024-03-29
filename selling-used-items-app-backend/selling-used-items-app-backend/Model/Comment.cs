@@ -12,11 +12,11 @@ namespace selling_used_items_app_backend.Model
         [ForeignKey("User")]
         public int creatorId { get; set; }
 
+        [ForeignKey("Purchase")]
+        public int purchaseId { get; set;}
+
         [ForeignKey("User")]
         public int targetUserId { get; set; }
-
-        [ForeignKey("Advertisement")]
-        public int advertisementId { get; set; }
 
         public string message { get; set; } 
 

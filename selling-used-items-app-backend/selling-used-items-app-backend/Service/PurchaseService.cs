@@ -73,5 +73,22 @@ namespace selling_used_items_app_backend.Service
 
             return advertisementPurchaseDTOs;
         }
+
+        public int GetAdvertisementCreatorIdByPurchaseId(int purchaseId)
+        {
+            var purchase = _purchaseRepository.Get(purchaseId);
+            if (purchase == null)
+            {
+                throw new Exception($"Purchase with id {purchaseId} not found.");
+            }
+
+            var advertisement = _advertisementRepository.Get(purchase.advertisementId);
+            if (advertisement == null)
+            {
+                throw new Exception($"Advertisement with id {purchase.advertisementId} not found.");
+            }
+
+            return advertisement.userId;
+        }
     }
 }

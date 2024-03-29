@@ -1,13 +1,12 @@
 <div class="container">
     <h2>Add comment</h2>
-    <form id="rateForm" (submit)="onSubmit()">
         <div class="form-group">
             <label for="purchaseId">Purchase ID:</label>
-            <input type="text" id="purchaseId" name="purchaseId" required>
+            <input type="text" id="purchaseId" name="purchaseId" required [(ngModel)]="comment.purchaseId"> 
         </div>
         <div class="form-group">
             <label for="comment">Comment:</label>
-            <textarea id="comment" name="comment" rows="4" cols="30" required></textarea>
+            <input type="text" id="comment" name="comment" [(ngModel)]="comment.message">
         </div>
         <div class="form-group">
             <label for="rating">Rate User:</label>
@@ -19,6 +18,5 @@
                 <input type="checkbox" id="star1" name="rating" value="1"><label for="star1"></label>
             </div>
         </div>
-        <button type="submit" class="submit-btn">Submit</button>
-    </form>
+        <button type="button" class="submit-btn" (click)="create()">Submit</button>
 </div>

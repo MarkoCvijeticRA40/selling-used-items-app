@@ -7,5 +7,6 @@ namespace selling_used_items_app_backend.dto
         public int price { get; set; }
         public string description { get; set; }
         public int advertisementStatus { get; set; }
+        public int advertisementCreatorId { get; set; }
     }
 }
