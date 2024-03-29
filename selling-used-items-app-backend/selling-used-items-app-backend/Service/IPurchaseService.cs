@@ -11,5 +11,6 @@ namespace selling_used_items_app_backend.Service
         void Update(Purchase purchase);
         void Delete(int id);
         IEnumerable<AdvertisementPurchaseDTO> GetByUserId(int userId);
+        int GetAdvertisementCreatorIdByPurchaseId(int purchaseId);
     }
 }
