@@ -95,7 +95,7 @@ namespace selling_used_items_app_backend.Controllers
             return Ok(advertisements);
         }
 
-        [HttpPut("{id}/sell")]
+        [HttpPut("{advertisementId}/sell")]
         public IActionResult Sell(int advertisementId)
         {
             using (var unitOfWork = new UnitOfWork(_dbContext))
@@ -123,6 +123,7 @@ namespace selling_used_items_app_backend.Controllers
                     _purchaseService.Create(purchase);
 
                     unitOfWork.SaveChanges();
+                    unitOfWork.CommitTransaction();
                     return NoContent();
                 }
                 catch (Exception ex)
