@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AdvertisementService } from '../../service/advertisement.service';
 import { Advertisement } from '../../model/advertisement';
 import { catchError, of } from 'rxjs';
+import { UserService } from '../../service/user.service';
+import { AuthorizationService } from '../../service/authorization.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-my-advertisement',
@@ -11,13 +14,17 @@ import { catchError, of } from 'rxjs';
 })
 export class MyAdvertisementComponent implements OnInit {
 
-  userId : number = 2;
-
   advertisements: Advertisement[] = [];
 
-  constructor(private router: Router, private advertisementService: AdvertisementService) {}
+  userId : number = 0;
+
+  constructor(private router: Router, private advertisementService: AdvertisementService, private userService: UserService, private authorizationService: AuthorizationService) {}
   
   ngOnInit(): void {
+    const userId = this.authorizationService.getUserID();
+    if (userId !== null) {
+      this.userId = userId;
+    }
     this.advertisementService.getByUserId(this.userId).subscribe(res => {
       this.advertisements = res;
     })

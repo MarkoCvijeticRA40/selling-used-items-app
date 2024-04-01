@@ -38,8 +38,8 @@ const routes: Routes = [
           { path: 'advertisement/:id', component: AdvertisementDisplayComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
           { path: 'create-advertisement', component: CreateAdvertisementComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
           { path: 'edit-advertisement/:id', component: EditAdvertisementComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser', 'Administrator'] } },
-          { path: 'report-user', component: ReportUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser'] } },
-          { path: 'add-comment', component: RateUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator'] } },
+          { path: 'report-user', component: ReportUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['RegisteredUser','Administrator' ] } },
+          { path: 'add-comment', component: RateUserComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator','RegisteredUser'] } },
           { path: 'comments', component: AcceptDeclineCommentComponent, canActivate: [AuthGuard], data: { expectedRole: ['Administrator'] } },
           { 
             path: 'profile', 

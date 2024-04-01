@@ -38,7 +38,7 @@ namespace selling_used_items_app_backend.Controllers
             }
 
             _reportService.Create(report);
-            _emailService.SendEmailAsync("marko.cvijetic@vegait.rs", "New report", report.reason);    
+            _emailService.SendEmailAsync("markodmnstrtr@gmail.com", "New report", report.reason);    
                         
             return Ok("Report created successfully.");
         }
