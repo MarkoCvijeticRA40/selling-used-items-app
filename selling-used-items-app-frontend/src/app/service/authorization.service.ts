@@ -19,7 +19,7 @@ export class AuthorizationService {
     return decodedToken.exp < currentTime;
   }
 
-  private decodeJWT(token: string): any {
+  decodeJWT(token: string): any {
     const payload: any = jwtDecode(token);
     return payload;
   }
@@ -27,6 +27,7 @@ export class AuthorizationService {
   checkUserRole(token: string, requiredRole: string): boolean {
     if (!token) return false;
     const payload = this.decodeJWT(token);
+    console.log(payload);
     return requiredRole.includes(payload.UserRole);
   }
 
@@ -36,5 +37,14 @@ export class AuthorizationService {
       return false;
     }
     return true;
+  }
+
+  getUserID(): number | null {
+    const token = this.getToken();
+    if (!token) return null;
+    const payload = this.decodeJWT(token);
+    const userIDString: string = payload.UserId;
+    const userID: number = parseInt(userIDString, 10);
+    return userID;
   }
 }

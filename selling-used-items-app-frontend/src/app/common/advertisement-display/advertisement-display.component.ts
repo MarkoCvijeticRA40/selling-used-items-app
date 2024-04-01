@@ -7,11 +7,12 @@ import { CommentService } from '../../service/comment.service';
 import { catchError, of, switchMap } from 'rxjs';
 import { Advertisement } from '../../model/advertisement';
 import { log } from 'node:console';
+import { AuthorizationService } from '../../service/authorization.service';
 
 @Component({
   selector: 'app-advertisement-display',
   templateUrl: './advertisement-display.component.html',
-  styleUrls: ['./advertisement-display.component.css'] // Ispravite styleUrl u styleUrls
+  styleUrls: ['./advertisement-display.component.css']
 })
 export class AdvertisementDisplayComponent implements OnInit {
 
@@ -19,9 +20,9 @@ export class AdvertisementDisplayComponent implements OnInit {
   user: User = new User();
   comments: any;
   advertisement: Advertisement = new Advertisement();
-  loggedUserId: number = 2;
+  loggedUserId: number = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private advertisementService : AdvertisementService, private userService: UserService, private commentService: CommentService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authorizationService: AuthorizationService, private advertisementService : AdvertisementService, private userService: UserService, private commentService: CommentService) { }
   
   ngOnInit(): void {
     this.activatedRoute.params.pipe(
@@ -47,7 +48,22 @@ export class AdvertisementDisplayComponent implements OnInit {
     ).subscribe(comments => {
       this.comments = comments;
     });
-  }
+
+    const userId = this.authorizationService.getUserID();
+    if (userId !== null) {
+      this.loggedUserId = userId;
+      this.userService.get(this.loggedUserId).pipe(
+      catchError((error) => {
+      console.error('Error fetching user', error);
+      return of(null); 
+    })
+    ).subscribe(res => {
+    if (res) { 
+      this.user = res; 
+          }
+        });
+      } 
+    }
 
   reserve() {
     this.advertisement.advertisementStatus = 1;

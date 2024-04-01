@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { log } from 'console';
+import { AuthorizationService } from '../service/authorization.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   name: string = "";
   advertisements: any[] = [];
   
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authorizationService: AuthorizationService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -20,6 +21,15 @@ export class HomeComponent implements OnInit {
         this.name = params['name'];
       }
     });
+  }
+
+  isAdmin(): boolean {
+    const token = this.authorizationService.getToken();
+    if (!token) return false;
+    const payload = this.authorizationService.decodeJWT(token);
+    console.log(payload);
+    if (payload.UserRole === 'RegisteredUser') return false; 
+    return true;
   }
 
   onSearchChange() {
@@ -37,9 +47,13 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
+  isAdvertisementsRoute(): boolean {
+    return this.router.url.includes('home/advertisements');
+  } 
+
   logout(): void {
-    localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
+    localStorage.removeItem('jwt');
   }
   
   navigateToLogin() {

@@ -1,12 +1,12 @@
 <div class="header">
     <img src="./assets/logo1.png" alt="Logo" class="logo">
-    <div class="search" style="position: relative;">
+    <div class="search" style="position: relative;" *ngIf="isAdvertisementsRoute()">
         <input type="text" id="searchInput" placeholder="Search..." class="searchInput" (input)="onSearchChange()" [(ngModel)]=name>
         <span class="searchIcon"></span>
     </div>
 
     <div class="addAdvertisement">
-        <button (click)="navigateToCreateAdvertisement()">
+        <button (click)="navigateToCreateAdvertisement()" *ngIf="isAdvertisementsRoute()">
             <span class="icon">+</span> Add Advertisement
         </button>
     </div>
@@ -20,13 +20,13 @@
         <button class="profile" (click)="navigateToProfile()">
             <span class="profileIcon"></span>
         </button>
-        <button class="reportUser" (click)="navigateToReportUser()">
-            <span class="reportUserIcon"></span>
-        </button>
         <button class="rateUser" (click)="navigateToRateUser()">
             <span class="rateUserIcon" ></span>
-        </button>     
-        <button class="approveComment" (click)="navigateToComments()">
+        </button> 
+        <button class="reportUser" (click)="navigateToReportUser()">
+            <span class="reportUserIcon"></span>
+        </button>    
+        <button class="approveComment" (click)="navigateToComments()" *ngIf="isAdmin()">
             <span class="approveCommentIcon" ></span>
         </button>
     </div>

@@ -4,6 +4,7 @@ import { User } from '../../model/user';
 import { UserService } from '../../service/user.service';
 import { catchError, of } from 'rxjs';
 import { error } from 'console';
+import { AuthorizationService } from '../../service/authorization.service';
 
 
 @Component({
@@ -14,8 +15,10 @@ import { error } from 'console';
 export class EditProfileComponent implements OnInit {
 
   user : User = new User();
+
+  userId : number = 0;
   
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private authorizationService: AuthorizationService) { }
 
   editProfile() {
     if (this.user.name && this.user.lastName && this.user.username) {
@@ -33,16 +36,20 @@ export class EditProfileComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.userService.get(2).pipe(
-      catchError((error) => {
-        console.error('Error fetching user', error);
-        return of(null); 
-      })
-    ).subscribe(res => {
-      if (res) { 
-        this.user = res; 
-      }
-    });
+    const userId = this.authorizationService.getUserID();
+  if (userId !== null) {
+  this.userId = userId;
+  this.userService.get(this.userId).pipe(
+    catchError((error) => {
+      console.error('Error fetching user', error);
+      return of(null); 
+    })
+  ).subscribe(res => {
+    if (res) { 
+      this.user = res; 
+    }
+  });
+    }
   }
 
   redirectToChangePassword(): void {

@@ -7,8 +7,8 @@ namespace selling_used_items_app_backend.Service
     {
         private readonly string _smtpServer = "smtp.gmail.com";
         private readonly int _smtpPort = 587; 
-        private readonly string _smtpUsername = "markopraksa@gmail.com";
-        private readonly string _smtpPassword = "cdqc bqmv qzca hxnr";
+        private readonly string _smtpUsername = "useditemsapp@gmail.com";
+        private readonly string _smtpPassword = "dkxw mqxk sdda nlon";
         
         public async Task SendEmailAsync(string toAddress, string subject, string body)
         {

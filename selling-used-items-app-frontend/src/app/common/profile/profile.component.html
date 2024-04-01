@@ -2,6 +2,6 @@
     <a href="/home/profile/edit-profile" class="status-option">Edit Profile</a>
     <a href="/home/profile/my-advertisements" class="status-option">My Advertisement</a>
     <a href="/home/profile/my-purchases" class="status-option">My Purchases</a>
-    <a href="/home/profile/all-users" class="status-option">All Users</a>
+    <a href="/home/profile/all-users" class="status-option" *ngIf="canViewAllUsers()">All Users</a>
 </div>
 <router-outlet></router-outlet>
